@@ -1,0 +1,39 @@
+OS
+
+.DS_Store Thumbs.db
+
+Editor / IDE
+
+.vscode/ .idea/ .sublime-project .sublime-workspace
+
+Logs
+
+.log npm-debug.log yarn-debug.log yarn-error.log
+
+Node (optional)
+
+node_modules/ package-lock.json yarn.lock pnpm-lock.yaml
+
+Build / Dist
+
+dist/ build/ out/
+
+Cache
+
+.cache/ .tmp/ temp/
+
+Environment
+
+.env .env.local .env.*.local
+
+Hidden files
+
+._* ehthumbs.db Desktop.ini
+
+Backups
+
+.bak .old *.swp
+
+Coverage
+
+coverage/
