@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"c:/Users/morit/OneDrive/Desktop/Websites/bluemoon_zweiterversuch/bluemoon_v2/app/api/events/[id]\")",
+      "Bash(mkdir -p \"c:/Users/morit/OneDrive/Desktop/Websites/bluemoon_zweiterversuch/bluemoon_v2/app/api/auth/login\")",
+      "Bash(mkdir -p \"c:/Users/morit/OneDrive/Desktop/Websites/bluemoon_zweiterversuch/bluemoon_v2/app/api/auth/logout\")",
+      "Bash(mkdir -p \"c:/Users/morit/OneDrive/Desktop/Websites/bluemoon_zweiterversuch/bluemoon_v2/app/api/upload\")",
+      "Bash(mkdir -p \"c:/Users/morit/OneDrive/Desktop/Websites/bluemoon_zweiterversuch/bluemoon_v2/public/uploads\")",
+      "Bash(node -e \"const bcrypt = require\\(''bcryptjs''\\); bcrypt.hash\\(''bluemoon2025'', 10\\).then\\(h => console.log\\(h\\)\\)\")",
+      "Bash(node -e \"require\\(''./next.config.ts''\\)\")"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\morit\\OneDrive\\Desktop\\Websites\\bluemoon_zweiterversuch\\bluemoon_v2\\lib",
+      "c:\\Users\\morit\\OneDrive\\Desktop\\Websites\\bluemoon_zweiterversuch\\bluemoon_v2\\app\\api\\events",
+      "c:\\Users\\morit\\OneDrive\\Desktop\\Websites\\bluemoon_zweiterversuch\\bluemoon_v2\\app\\api\\auth\\login",
+      "c:\\Users\\morit\\OneDrive\\Desktop\\Websites\\bluemoon_zweiterversuch\\bluemoon_v2\\app\\api\\auth\\logout",
+      "c:\\Users\\morit\\OneDrive\\Desktop\\Websites\\bluemoon_zweiterversuch\\bluemoon_v2\\app\\api\\upload",
+      "c:\\Users\\morit\\OneDrive\\Desktop\\Websites\\bluemoon_zweiterversuch\\bluemoon_v2\\components\\sections",
+      "c:\\Users\\morit\\OneDrive\\Desktop\\Websites\\bluemoon_zweiterversuch\\bluemoon_v2\\app\\admin",
+      "c:\\Users\\morit\\OneDrive\\Desktop\\Websites\\bluemoon_zweiterversuch\\bluemoon_v2\\components\\layout",
+      "c:\\Users\\morit\\OneDrive\\Desktop\\Websites\\bluemoon_zweiterversuch\\bluemoon_v2"
+    ]
+  }
+}

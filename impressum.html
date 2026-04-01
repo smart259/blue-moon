@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Impressum – Cafe Blue Moon Wuppertal"/>
+  <title>Impressum – Blue Moon Wuppertal</title>
+
+  <!-- Fonts: Cormorant Garamond (Display) + Cinzel (Labels) + Crimson Pro (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ── DESIGN TOKENS ─────────────────────────────────────────── */
+    :root {
+      --bg:           #02040c;
+      --bg2:          #05091a;
+      --bg3:          #080f28;
+      --bg-surface:   rgba(8, 14, 36, 0.6);
+      --amber:        #e8922a;
+      --amber-light:  #f5af4e;
+      --amber-glow:   rgba(232, 146, 42, 0.18);
+      --gold:         #eac96a;
+      --cream:        #f3eadc;
+      --cream-muted:  rgba(243, 234, 220, 0.7);
+      --muted:        #9490a6;
+      --border:       rgba(232, 146, 42, 0.15);
+      --border-hover: rgba(232, 146, 42, 0.45);
+      --glass:        rgba(8, 14, 40, 0.55);
+      --radius:       14px;
+      --nav-h:        72px;
+      --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in:      cubic-bezier(0.4, 0, 1, 1);
+    }
+
+    /* ── RESET ──────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--cream);
+      background: var(--bg);
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+
+    /* ── STARFIELD ─────────────────────────────────────────────── */
+    #stars-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .5;
+    }
+
+    /* ── NAVIGATION ─────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 100;
+      background: var(--bg-surface);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+    }
+    .nav-logo-img { height: 105px; width: auto; display: block; }
+    .nav-logo .accent { color: var(--amber); }
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-menu a {
+      font-family: 'Cinzel', serif;
+      font-size: .875rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      transition: color .2s var(--ease-out);
+    }
+    .nav-menu a:hover { color: var(--amber); }
+    .nav-menu a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+
+    /* ── MAIN CONTENT ───────────────────────────────────────────── */
+    main {
+      padding-top: calc(var(--nav-h) + 2rem);
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--amber);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────────────── */
+    .footer {
+      background: var(--bg2);
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      margin-bottom: .5rem;
+    }
+    .footer-logo .accent { color: var(--amber); }
+    .footer-tagline {
+      font-size: .875rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-nav a {
+      font-family: 'Cinzel', serif;
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      transition: color .2s var(--ease-out);
+    }
+    .footer-nav a:hover { color: var(--amber); }
+    .footer-nav a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+    .footer-divider { width: 60px; height: 1px; background: var(--border); margin: 0 auto 1rem; }
+    .footer-copy {
+      font-size: .75rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <!-- SKIP LINK -->
+  <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+
+  <!-- STARFIELD -->
+  <canvas id="stars-canvas"></canvas>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" role="navigation" aria-label="Hauptnavigation">
+    <div class="nav-inner">
+      <a href="blue-moon.html" class="nav-logo">
+        <picture>
+          <source srcset="Lokal_bilder/Bluemoon_logo.png" type="image/png" />
+          <img src="Lokal_bilder/Bluemoon_logo.png" alt="Blue Moon Wuppertal Logo" class="nav-logo-img" />
+        </picture>
+      </a>
+      <div class="nav-menu">
+        <a href="blue-moon.html#about">Über uns</a>
+        <a href="blue-moon.html#aktionen">Aktionen</a>
+        <a href="blue-moon.html#zeiten">Öffnungszeiten</a>
+        <a href="blue-moon.html#galerie">Galerie</a>
+        <a href="blue-moon.html#kontakt">Kontakt</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main id="main">
+    <div class="container">
+      <h1>Impressum</h1>
+      <h2>Angaben gemäß § 5 TMG</h2>
+      <p>F.Tanju Tayyar<br>
+      Siegesstr.162<br>
+      42287 Wuppertal<br>
+      Deutschland</p>
+
+      <h2>Kontakt</h2>
+      <p>Telefon: 0202 5595 75<br>
+      E-Mail: info@bluemoon-wuppertal.de</p>
+
+      <h2>Vertreten durch</h2>
+      <p>Geschäftsführer: F.Tanju Tayyar</p>
+
+      <h2>Registereintrag</h2>
+      <p>Eingetragen im Handelsregister.<br>
+      Registergericht: Amtsgericht Wuppertal<br>
+      Registernummer: HRB 12345</p>
+
+      <h2>Umsatzsteuer-ID</h2>
+      <p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br>
+      DE 123456789</p>
+
+      <h2>Haftung für Inhalte</h2>
+      <p>Die Inhalte dieser Website werden mit größtmöglicher Sorgfalt erstellt. Der Anbieter übernimmt jedoch keine Gewähr für die Richtigkeit, Vollständigkeit und Aktualität der bereitgestellten Inhalte. Die Nutzung der Inhalte der Website erfolgt auf eigene Gefahr des Nutzers. Namentlich gekennzeichnete Beiträge geben die Meinung des jeweiligen Autors und nicht immer die Meinung des Anbieters wieder. Mit der reinen Nutzung der Website des Anbieters kommt keinerlei Vertragsverhältnis zwischen dem Nutzer und dem Anbieter zustande.</p>
+
+      <h2>Haftung für Links</h2>
+      <p>Diese Website enthält Verknüpfungen zu Websites Dritter ("externe Links"). Diese Websites unterliegen der Haftung der jeweiligen Betreiber. Der Anbieter hat bei der erstmaligen Verknüpfung der externen Links die fremden Inhalte daraufhin überprüft, ob etwaige Rechtsverstöße bestehen. Zu dem Zeitpunkt waren keine Rechtsverstöße ersichtlich. Der Anbieter hat keinerlei Einfluss auf die aktuelle und zukünftige Gestaltung und auf die Inhalte der verknüpften Seiten. Das Setzen von externen Links bedeutet nicht, dass sich der Anbieter die hinter dem Verweis oder Link liegenden Inhalte zu Eigen macht. Eine ständige Kontrolle der externen Links ist für den Anbieter ohne konkrete Hinweise auf Rechtsverstöße nicht zumutbar. Bei Kenntnis von Rechtsverstößen werden jedoch derartige externe Links unverzüglich gelöscht.</p>
+
+      <h2>Urheberrecht</h2>
+      <p>Die auf dieser Website veröffentlichten Inhalte unterliegen dem deutschen Urheber- und Leistungsschutzrecht. Jede vom deutschen Urheber- und Leistungsschutzrecht nicht zugelassene Verwertung bedarf der vorherigen schriftlichen Zustimmung des Anbieters oder jeweiligen Rechteinhabers. Dies gilt insbesondere für Vervielfältigung, Bearbeitung, Übersetzung, Einspeicherung, Verarbeitung bzw. Wiedergabe von Inhalten in Datenbanken oder anderen elektronischen Medien und Systemen. Inhalte und Rechte Dritter sind dabei als solche gekennzeichnet. Die unerlaubte Vervielfältigung oder Weitergabe einzelner Inhalte oder kompletter Seiten ist nicht gestattet und strafbar. Lediglich die Herstellung von Kopien und Downloads für den persönlichen, privaten und nicht kommerziellen Gebrauch ist erlaubt.</p>
+      <p>Die Darstellung dieser Website in fremden Frames ist nur mit schriftlicher Erlaubnis zulässig.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Durch den Besuch der Website des Anbieters können Informationen über den Zugriff (Datum, Uhrzeit, betrachtete Seite) gespeichert werden. Diese Daten gehören nicht zu den personenbezogenen Daten, sondern sind anonymisiert. Sie werden ausschließlich zu statistischen Zwecken ausgewertet. Eine Weitergabe an Dritte, zu kommerziellen oder nichtkommerziellen Zwecken, findet nicht statt.</p>
+      <p>Der Anbieter weist ausdrücklich darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen und nicht lückenlos vor dem Zugriff durch Dritte geschützt werden kann.</p>
+      <p>Die Verwendung der Kontaktdaten des Impressums zur gewerblichen Werbung ist ausdrücklich nicht erwünscht, es sei denn der Anbieter hatte zuvor seine schriftliche Einwilligung erteilt oder es besteht bereits eine Geschäftsbeziehung. Der Anbieter und alle auf dieser Website genannten Personen widersprechen hiermit jeder kommerziellen Verwendung und Weitergabe ihrer Daten.</p>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">
+          Blue <span class="accent">Moon</span> Wuppertal
+        </div>
+        <p class="footer-tagline">"The Color of the Night" – Seit 1995</p>
+        <nav class="footer-nav" aria-label="Footer-Navigation">
+          <a href="blue-moon.html#about">Über uns</a>
+          <a href="blue-moon.html#aktionen">Aktionen</a>
+          <a href="blue-moon.html#zeiten">Öffnungszeiten</a>
+          <a href="blue-moon.html#galerie">Galerie</a>
+          <a href="blue-moon.html#kontakt">Kontakt</a>
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+          <a href="sitemap.html">Sitemap</a>
+        </nav>
+        <div class="footer-divider" role="separator" aria-hidden="true"></div>
+        <p class="footer-copy">&copy; 2025 Cafe Blue Moon Wuppertal &middot; Alle Rechte vorbehalten</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ── Starfield Animation ─────────────────────────────────────── */
+    (function () {
+      const canvas = document.getElementById('stars-canvas');
+      const ctx = canvas.getContext('2d');
+      let stars = [];
+      const numStars = 200;
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      function createStars() {
+        stars = [];
+        for (let i = 0; i < numStars; i++) {
+          stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() * 1.5 + 0.5,
+            speed: Math.random() * 0.5 + 0.1,
+            opacity: Math.random() * 0.8 + 0.2
+          });
+        }
+      }
+
+      function drawStars() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'rgba(232, 146, 42, 0.6)'; // amber color
+        stars.forEach(star => {
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+          ctx.fill();
+        });
+      }
+
+      function updateStars() {
+        stars.forEach(star => {
+          star.y += star.speed;
+          if (star.y > canvas.height) {
+            star.y = 0;
+            star.x = Math.random() * canvas.width;
+          }
+        });
+      }
+
+      function animate() {
+        updateStars();
+        drawStars();
+        requestAnimationFrame(animate);
+      }
+
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        createStars();
+      });
+
+      resizeCanvas();
+      createStars();
+      animate();
+    })();
+  </script>
+</body>
+</html>
