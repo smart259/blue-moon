@@ -1572,14 +1572,19 @@ line-height: 22px;
   background: var(--amber);
   border: none;
   cursor: pointer;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   z-index: 50;
-  transition: transform .3s var(--ease-out), box-shadow .3s, background .25s;
+  transition: transform .3s var(--ease-out), box-shadow .3s, background .25s, opacity .3s;
   box-shadow: 0 4px 28px rgba(0, 0, 0, .3);
   min-height: 50px;
   padding: 0;
+  opacity: 0;
+}
+.scroll-to-top-btn.show {
+  display: flex;
+  opacity: 1;
 }
 .scroll-to-top-btn:hover {
   background: var(--amber-light);

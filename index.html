@@ -2015,6 +2015,16 @@
     const scrollBtn = document.getElementById('scrollToTopBtn');
     if (!scrollBtn) return;
 
+    // Show/hide button on scroll
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 300) {
+        scrollBtn.classList.add('show');
+      } else {
+        scrollBtn.classList.remove('show');
+      }
+    });
+
+    // Scroll to top on click
     scrollBtn.addEventListener('click', function () {
       window.scrollTo({
         top: 0,
