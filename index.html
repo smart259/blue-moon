@@ -96,6 +96,13 @@ DOCTYPE html>
       opacity: 0.8;
       z-index: -1;
     }
+    .zeiten #stars-canvas-zeiten {
+      position: absolute;
+      inset: 0;
+      opacity: 0.8;
+      z-index: 0;
+      pointer-events: none;
+    }
 
     /* ── NAVIGATION ─────────────────────────────────────────────── */
     .nav {
@@ -264,7 +271,7 @@ DOCTYPE html>
       font-size: clamp(2.1rem, 4.5vw, 3.4rem);
       font-weight: 600;
       line-height: 1.08;
-      color: var(--cream);
+      color: #ffffff;
     }
     .section-title em {
       font-style: italic;
@@ -390,11 +397,14 @@ DOCTYPE html>
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(3.5rem, 10vw, 8rem);
       font-weight: 700;
-      line-height: .95;
+      line-height: 1;
       letter-spacing: -.01em;
       color: var(--cream);
       margin-bottom: .7rem;
-      text-shadow: 1px 0px 40px #fff
+      text-shadow: 1px 0px 40px #fff;
+      text-align: center;
+      white-space: nowrap;
+      width: 100%;
     }
     .hero-title .accent { color: var(--amber); }
     .hero-title .blue-text { color: #080f28; }
@@ -672,14 +682,14 @@ DOCTYPE html>
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(2.2rem, 4.5vw, 3.2rem);
       font-weight: 600;
-      color: var(--cream);
+      color: #e8922a;;
       line-height: 1.08;
     }
     .neu-desc {
-      font-size: 1rem;
-      color: var(--muted);
-      max-width: 32ch;
-      line-height: 1.7;
+      font-size: 20px;
+      color: #ffffff;
+    max-width: 32ch;
+    line-height: 22px;
     }
     .neu-icon {
       position: absolute;
@@ -693,7 +703,7 @@ DOCTYPE html>
     /* ── AKTIONEN ───────────────────────────────────────────────── */
     .aktionen {
       padding: 40px 0;
-      background: transparent;
+      background: linear-gradient(180deg, #040a1d 0%, #071631 100%);
       position: relative;
       z-index: 1;
     }
@@ -784,8 +794,14 @@ DOCTYPE html>
 
     /* ── ÖFFNUNGSZEITEN ─────────────────────────────────────────── */
     .zeiten {
+      position: relative;
+      overflow: hidden;
       padding: 40px 0;
       background: var(--bg2);
+    }
+    .zeiten > .container {
+      position: relative;
+      z-index: 1;
     }
     .zeiten-header {
       display: flex;
@@ -880,14 +896,14 @@ DOCTYPE html>
     /* ── GALERIE ────────────────────────────────────────────────── */
     .galerie-scroll-wrapper {
       position: relative;
-      height: 280vh;
+      height: 500vh;
     }
     .galerie {
       padding: 0;
       background: transparent;
       position: sticky;
-      top: 0;
-      height: 100dvh;
+      top: var(--nav-h);
+      height: calc(100dvh - var(--nav-h));
       overflow: hidden;
       z-index: 1;
     }
@@ -917,20 +933,16 @@ DOCTYPE html>
         linear-gradient(to bottom, rgba(2,4,12,.6) 0%, transparent 25%, transparent 65%, rgba(2,4,12,.75) 100%),
         radial-gradient(ellipse 90% 90% at 50% 50%, transparent 35%, rgba(2,4,12,.5) 100%);
     }
-    .galerie #stars-canvas {
-      position: absolute;
-      opacity: 0.8;
-      z-index: 2;
-    }
     .galerie-content {
       position: relative;
       z-index: 3;
-      height: 100%;
+      height: auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
       padding-top: calc(var(--nav-h) + 1.5rem);
-      padding-bottom: 2rem;
+      padding-bottom: 4rem;
+      will-change: transform, opacity;
     }
     .galerie-header {
       display: flex;
@@ -963,10 +975,17 @@ DOCTYPE html>
       opacity: 1 !important;
       transform: translateX(0) !important;
     }
-    .galerie-item:nth-child(2) { transition-delay: .08s; }
-    .galerie-item:nth-child(3) { transition-delay: .16s; }
-    .galerie-item:nth-child(4) { transition-delay: .12s; }
-    .galerie-item:nth-child(5) { transition-delay: .20s; }
+    .galerie-item:nth-child(2)  { transition-delay: .08s; }
+    .galerie-item:nth-child(3)  { transition-delay: .16s; }
+    .galerie-item:nth-child(4)  { transition-delay: .12s; }
+    .galerie-item:nth-child(5)  { transition-delay: .20s; }
+    .galerie-item:nth-child(6)  { transition-delay: .06s; }
+    .galerie-item:nth-child(7)  { transition-delay: .12s; }
+    .galerie-item:nth-child(8)  { transition-delay: .18s; }
+    .galerie-item:nth-child(9)  { transition-delay: .04s; }
+    .galerie-item:nth-child(10) { transition-delay: .10s; }
+    .galerie-item:nth-child(11) { transition-delay: .16s; }
+    .g6, .g7, .g8, .g9, .g10, .g11 { grid-column: span 4; aspect-ratio: 4/3; }
     .galerie-item:hover { border-color: var(--border-hover); }
     .galerie-item img {
       width: 100%; height: 100%;
@@ -978,11 +997,109 @@ DOCTYPE html>
       transform: scale(1.05);
       filter: brightness(1.06) saturate(1.18);
     }
+    .galerie-item {
+      cursor: pointer;
+    }
     .g1 { grid-column: span 4; aspect-ratio: 4/3; }
     .g2 { grid-column: span 4; aspect-ratio: 4/3; }
     .g3 { grid-column: span 4; aspect-ratio: 4/3; }
     .g4 { grid-column: span 6; aspect-ratio: 16/7; }
     .g5 { grid-column: span 6; aspect-ratio: 16/7; }
+
+    /* ── GALERIE LIGHTBOX ─────────────────────────────────────────── */
+    .galerie-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease-out;
+    }
+    .galerie-lightbox.active {
+      display: flex;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .galerie-lightbox-container {
+      position: relative;
+      width: 90%;
+      max-width: 900px;
+      height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .galerie-lightbox-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .galerie-lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background 0.3s;
+      z-index: 10;
+    }
+    .galerie-lightbox-nav:hover {
+      background: rgba(255,255,255,0.4);
+    }
+    .galerie-lightbox-prev {
+      left: 20px;
+    }
+    .galerie-lightbox-next {
+      right: 20px;
+    }
+    .galerie-lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background 0.3s;
+      z-index: 10;
+    }
+    .galerie-lightbox-close:hover {
+      background: rgba(255,255,255,0.4);
+    }
+    .galerie-lightbox-counter {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 14px;
+      background: rgba(0,0,0,0.5);
+      padding: 8px 16px;
+      border-radius: 20px;
+      z-index: 10;
+    }
+
     .galerie-menu-wrap {
       margin-top: 1.5rem;
       border-radius: 18px;
@@ -1009,13 +1126,16 @@ DOCTYPE html>
     }
 
     /* ── VERANSTALTUNGEN ───────────────────────────────────────── */
-    .veranstaltungen {
+    .veranstaltungen-scroll-wrapper {
       position: relative;
+      height: 300vh;
+    }
+    .veranstaltungen {
+      position: sticky;
+      top: 0;
+      height: 100vh;
       height: 100dvh;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
     #veranstaltungen-animation {
       position: absolute;
@@ -1033,20 +1153,37 @@ DOCTYPE html>
       pointer-events: none;
     }
     .veranstaltungen-content {
-      position: relative;
+      position: absolute;
+      inset: 0;
       z-index: 2;
+    }
+    .veranstaltungen-overline {
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+    /* ev-cols: absolute fill, same as cocktails-cols */
+    .ev-cols {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+    }
+    /* ev-header: centered at top, starts huge + invisible */
+    .ev-header {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: calc(var(--nav-h) + 2rem) 1.5rem 2rem;
-      width: 100%;
-    }
-    .veranstaltungen-overline {
-      letter-spacing: .18em;
-      font-size: 16px;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 1rem;
+      text-align: center;
+      gap: .6rem;
+      position: absolute;
+      left: 0; right: 0;
+      top: calc(var(--nav-h) + 8rem + 30px);
+      opacity: 0;
+      transform: scale(2.6);
+      transform-origin: center top;
+      will-change: transform, opacity;
     }
     /* Event-Karussell */
     .ev-carousel-wrap {
@@ -1054,6 +1191,7 @@ DOCTYPE html>
       max-width: 400px;
       width: 100%;
       user-select: none;
+      margin-top: 30px;
     }
     .ev-carousel-vp {
       overflow: hidden;
@@ -1212,38 +1350,24 @@ DOCTYPE html>
       .ev-carousel-prev { left: -4px; }
       .ev-carousel-next { right: -4px; }
     }
-    /* Desktop: header left, carousel right */
+    /* Desktop: carousel slide in from below, header scale animation */
     @media (min-width: 769px) {
-      .veranstaltungen-content {
-        justify-content: center;
-        padding-left: 0;
-        padding-right: 0;
-      }
-      .ev-cols {
-        display: flex;
-        align-items: flex-start;
-        width: 100%;
-        padding: 0 3rem 0 4rem;
-        gap: 4rem;
-        position: relative;
-      }
-      .ev-header {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
-        max-width: 38ch;
-      }
-      .ev-header .section-title {
-        text-align: left;
-        margin-bottom: 0;
-      }
       .ev-carousel-wrap {
-        max-width: 400px;
-        
-        flex-shrink: 0;
-        margin-right: 2rem;
+        width: 55% !important;
+        max-width: 680px;
+        position: absolute !important;
+        left: 50% !important;
+        right: auto !important;
+        top: calc(var(--nav-h) + 8rem + 170px) !important;
+        bottom: auto;
+        transform: translateX(-50%) translateY(calc(100% + 3rem)) !important;
+        opacity: 0 !important;
+        transition: transform 0.9s var(--ease-out), opacity 0.9s var(--ease-out) !important;
+        margin: 0 !important;
+      }
+      .ev-carousel-wrap.lightbox-visible {
+        transform: translateX(-50%) translateY(0) !important;
+        opacity: 1 !important;
       }
     }
 
@@ -1463,6 +1587,10 @@ DOCTYPE html>
       transform: translateX(80px);
       transition: opacity 1.2s var(--ease-out), transform 1.2s var(--ease-out);
     }
+    .reveal-left.reveal-delay-1 { transition-delay: .08s; }
+    .reveal-left.reveal-delay-2 { transition-delay: .16s; }
+    .reveal-right.reveal-delay-1 { transition-delay: .08s; }
+    .reveal-right.reveal-delay-2 { transition-delay: .16s; }
     .reveal-left.visible,
     .reveal-right.visible { opacity: 1; transform: none; }
     .neu-card.reveal-right.visible {
@@ -1490,9 +1618,9 @@ DOCTYPE html>
       .aktionen-grid { grid-template-columns: repeat(2, 1fr); }
       .zeiten-grid { grid-template-columns: 1fr; }
       .kontakt-grid { grid-template-columns: 1fr; gap: 3.5rem; }
-      .galerie-scroll-wrapper { height: 220vh; }
+      .galerie-scroll-wrapper { height: 360vh; }
       .galerie-grid { grid-template-columns: 1fr 1fr; }
-      .g1, .g2, .g3 { grid-column: span 1; }
+      .g1, .g2, .g3, .g6, .g7, .g8, .g9, .g10, .g11 { grid-column: span 1; }
       .g4, .g5 { grid-column: span 2; }
       .hero-strip { gap: 1rem; padding: .9rem 1rem; }
       .scroll-hero-wrapper { height: 500vh; }
@@ -1523,7 +1651,7 @@ DOCTYPE html>
       /* Header: zentriert im oberen Bereich */
       .cocktails-header {
         position: absolute;
-        top: calc(var(--nav-h) + 20.5rem);
+        top: 2rem;
         left: 50%;
         transform: translateX(-50%);
         width: 86%;
@@ -1535,13 +1663,13 @@ DOCTYPE html>
         transition: opacity 0.9s var(--ease-out);
       }
       .cocktails-header.show {
-        opacity: 0;
-        pointer-events: none;
+        opacity: 1;
+        pointer-events: auto;
       }
       /* Lightbox: von unten einschieben + einblenden */
       .cocktails-lightbox {
         position: absolute !important;
-        bottom: 0 !important;
+        bottom: 20px !important;
         left: 50% !important;
         right: auto !important;
         width: 80% !important;
@@ -1580,8 +1708,41 @@ DOCTYPE html>
       .cocktails-lightbox .slide-price { font-size: .82rem; padding-top: .3rem; }
       .cocktails-pdf-btn { width: calc(100% - 2rem); margin: .6rem 1rem 1rem; }
       .cocktails-sub { display: none; }
-      .hero-title { font-size: clamp(2.8rem, 14vw, 5rem); }
+      .slide-count-badge { top: 0px !important; }
+      .cocktails-lightbox .slide-emoji { transform: scale(1); }
+      .hero-title { font-size: clamp(2.8rem, 14vw, 5rem); text-align: center; width: 100%; white-space: normal; }
       .about-stats { grid-template-columns: repeat(3, 1fr); }
+      /* Mobile veranstaltungen: sticky scroll animation */
+      .veranstaltungen-scroll-wrapper { height: 300vh; }
+      .veranstaltungen {
+        top: var(--nav-h);
+        height: calc(100dvh - var(--nav-h));
+      }
+      .ev-header {
+        top: calc(2rem + 30px);
+        opacity: 1;
+        transform: translateX(-50%);
+        left: 50%;
+        right: auto;
+        width: 86%;
+        transition: opacity 0.9s var(--ease-out);
+      }
+      .ev-carousel-wrap {
+        position: absolute !important;
+        bottom: 20px !important;
+        left: 50% !important;
+        right: auto !important;
+        width: 80% !important;
+        top: auto !important;
+        transform: translateX(-50%) translateY(110%) !important;
+        opacity: 0 !important;
+        transition: transform 0.9s var(--ease-out), opacity 0.9s var(--ease-out) !important;
+        margin: 0 !important;
+      }
+      .ev-carousel-wrap.lightbox-visible {
+        transform: translateX(-50%) translateY(0) !important;
+        opacity: 1 !important;
+      }
     }
     /* ── GALERIE KARUSSELL (mobil) ─────────────────────────────── */
     .galerie-carousel { display: none; }
@@ -1696,7 +1857,7 @@ DOCTYPE html>
       gap: .6rem;
       position: absolute;
       left: 0; right: 0;
-      top: calc(var(--nav-h) + 3rem);
+      top: calc(var(--nav-h) + 8rem);
       opacity: 0;
       transform: scale(2.6);
       transform-origin: center top;
@@ -1707,8 +1868,8 @@ DOCTYPE html>
     }
     /* Cocktail lightbox (carousel) slide in from below */
     .cocktails-lightbox {
-      width: 72% !important;
-      max-width: 900px;
+      width: 55% !important;
+      max-width: 680px;
       position: absolute !important;
       left: 50% !important;
       right: auto !important;
@@ -1728,8 +1889,9 @@ DOCTYPE html>
       grid-template-columns: 300px 1fr;
     }
     .cocktails-lightbox .slide-visual {
-      padding: 1.2rem .8rem;
-      gap: .8rem;
+      padding: 1rem .7rem;
+      gap: .6rem;
+      height: 340px;
     }
     .cocktails-lightbox .slide-emoji {
       font-size: 3rem;
@@ -1739,8 +1901,8 @@ DOCTYPE html>
       gap: .45rem;
     }
     .cocktails-lightbox .slide-title {
-      font-size: clamp(1.3rem, 2.2vw, 1.9rem);
-      line-height: 1.1;
+      font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+      line-height: 1.15;
     }
     .cocktails-lightbox .slide-drinks,
     .cocktails-lightbox .slide-extra-drinks {
@@ -1837,8 +1999,7 @@ DOCTYPE html>
       justify-content: center;
       gap: 1.5rem;
       padding: 3rem 2rem;
-      overflow: hidden;
-      border-radius: 20px 0 0 20px;
+      border-radius: 0px 0 0 0px;
       height: 320px;
     }
     .slide-glow {
@@ -1866,17 +2027,21 @@ DOCTYPE html>
     }
     .slide-count-badge {
       position: relative;
+      top: 83px;
       z-index: 1;
       font-family: 'Cinzel', serif;
       font-size: .62rem;
       letter-spacing: .2em;
       text-transform: uppercase;
       color: var(--cream);
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.18);
       border-radius: 40px;
       padding: .35rem 1.1rem;
       backdrop-filter: blur(8px);
+      cursor: default;
+      box-shadow: 0 2px 14px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.09);
+      transition: background .2s, box-shadow .2s;
     }
 
     /* Content panel */
@@ -2080,6 +2245,18 @@ DOCTYPE html>
       .reveal { opacity: 1; transform: none; }
     }
 
+    /* ── HERO TITLE LETTER ANIMATION ────────────────────────────── */
+    .hero-letter {
+      display: inline-block;
+      opacity: 0;
+      animation: cocktailLetterReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation-delay: var(--letter-delay, 0ms);
+      animation-play-state: paused;
+    }
+    #hov-title.show .hero-letter {
+      animation-play-state: running;
+    }
+
     /* ── COCKTAIL HEADLINE LETTER ANIMATION ─────────────────────── */
     @keyframes cocktailLetterReveal {
       0%   { opacity: 0; transform: translateY(20px) scale(1); filter: blur(6px); }
@@ -2103,6 +2280,7 @@ DOCTYPE html>
     #cocktails-title {
       position: relative;
       overflow: visible;
+      font-size: clamp(2.52rem, 5.4vw, 4.08rem);
     }
     #cocktails-title.shimmer-pass {
       overflow: hidden;
@@ -2170,7 +2348,7 @@ DOCTYPE html>
 
     <!-- Text overlay -->
     <div class="hero-overlay" role="group" aria-label="Cafe Blue Moon – Willkommensbereich">
-      <h1 class="hero-title hov-item" id="hov-title">
+      <h1 class="hero-title" id="hov-title">
         <span class="blue-text">Blue</span> <span class="accent">Moon</span>
       </h1>
       <p class="hero-tagline hov-item" id="hov-tagline">The Color of the Night</p>
@@ -2317,8 +2495,8 @@ DOCTYPE html>
   <div class="container">
     <div class="cocktails-cols">
     <div class="cocktails-header">
-      <span class="overline">133 Kreationen</span>
-      <h2 class="section-title" id="cocktails-title">Unsere <em>Cocktails</em></h2>
+      <span class="overline" style="color:var(--cream)">133 Kreationen</span>
+      <h2 class="section-title" id="cocktails-title"><em>Unsere</em> Cocktails</h2>
     </div>
 
     <div class="carousel-wrap cocktails-lightbox">
@@ -2739,8 +2917,6 @@ DOCTYPE html>
     <div id="galerie-dark-overlay" aria-hidden="true"></div>
     <!-- Vignette -->
     <div class="galerie-vignette" aria-hidden="true"></div>
-    <!-- Starfield Canvas -->
-    <canvas id="stars-canvas" aria-hidden="true"></canvas>
     <!-- Content -->
     <div class="galerie-content">
       <div class="container">
@@ -2752,42 +2928,81 @@ DOCTYPE html>
         <div class="galerie-grid" role="list" aria-label="Bildergalerie">
           <div class="galerie-item g1" role="listitem">
             <img
-              src="https://image.jimcdn.com/app/cms/image/transf/dimension=297x10000:format=jpg/path/sf786fa71b6f524a4/image/i663ecac946dffb9a/version/1494273086/image.jpg"
-              alt="Blue Moon Wuppertal – Terrasse Außenbereich"
-              width="297" height="396"
+              src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_2_min (1).webp"
+              alt="Blue Moon Wuppertal – Galerie Bild 1"
               loading="lazy"
             />
           </div>
           <div class="galerie-item g2" role="listitem">
             <img
-              src="https://image.jimcdn.com/app/cms/image/transf/dimension=297x10000:format=jpg/path/sf786fa71b6f524a4/image/i16ee486ebd43eb96/version/1494273105/image.jpg"
-              alt="Blue Moon Wuppertal – Terrasse Außenansicht"
-              width="297" height="396"
+              src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_5_min (1).webp"
+              alt="Blue Moon Wuppertal – Galerie Bild 2"
               loading="lazy"
             />
           </div>
           <div class="galerie-item g3 from-right" role="listitem">
             <img
-              src="https://image.jimcdn.com/app/cms/image/transf/dimension=297x10000:format=jpg/path/sf786fa71b6f524a4/image/ib404e66ab23955a2/version/1494273123/image.jpg"
-              alt="Blue Moon Wuppertal – Außenbereich"
-              width="297" height="396"
+              src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_7_min (1).webp"
+              alt="Blue Moon Wuppertal – Galerie Bild 3"
               loading="lazy"
             />
           </div>
 
           <div class="galerie-item g4" role="listitem">
             <img
-              src="https://image.jimcdn.com/app/cms/image/transf/dimension=1000x10000:format=jpg/path/sf786fa71b6f524a4/image/i5efbc74d9f0de6c0/version/1718000353/image.jpg"
-              alt="Blue Moon – Speisekarte und Angebote"
-              width="1000" height="422"
+              src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_8_min (1).webp"
+              alt="Blue Moon – Galerie Bild 4"
               loading="lazy"
             />
           </div>
           <div class="galerie-item g5 from-right" role="listitem">
             <img
-              src="https://image.jimcdn.com/app/cms/image/transf/dimension=1000x10000:format=jpg/path/sf786fa71b6f524a4/image/ic76d2a42ee407cb9/version/1718000372/image.jpg"
-              alt="Blue Moon – Gerichte und Aktionen"
-              width="1000" height="422"
+              src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_0_min.webp"
+              alt="Blue Moon – Galerie Bild 5"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="galerie-item g6" role="listitem">
+            <img
+              src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_1_min.webp"
+              alt="Blue Moon Wuppertal – Galerie Bild 6"
+              loading="lazy"
+            />
+          </div>
+          <div class="galerie-item g7" role="listitem">
+            <img
+              src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_2_min.webp"
+              alt="Blue Moon Wuppertal – Galerie Bild 7"
+              loading="lazy"
+            />
+          </div>
+          <div class="galerie-item g8 from-right" role="listitem">
+            <img
+              src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_3_min.webp"
+              alt="Blue Moon Wuppertal – Galerie Bild 8"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="galerie-item g9" role="listitem">
+            <img
+              src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_4_min.webp"
+              alt="Blue Moon Wuppertal – Galerie Bild 9"
+              loading="lazy"
+            />
+          </div>
+          <div class="galerie-item g10" role="listitem">
+            <img
+              src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_6_min.webp"
+              alt="Blue Moon Wuppertal – Galerie Bild 10"
+              loading="lazy"
+            />
+          </div>
+          <div class="galerie-item g11 from-right" role="listitem">
+            <img
+              src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_7_min.webp"
+              alt="Blue Moon Wuppertal – Galerie Bild 11"
               loading="lazy"
             />
           </div>
@@ -2797,19 +3012,37 @@ DOCTYPE html>
         <div class="galerie-carousel" id="galerie-carousel" role="region" aria-label="Bildergalerie">
           <div class="galerie-carousel-track" id="galerie-carousel-track">
             <div class="galerie-carousel-slide">
-              <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=297x10000:format=jpg/path/sf786fa71b6f524a4/image/i663ecac946dffb9a/version/1494273086/image.jpg" alt="Blue Moon Wuppertal – Terrasse Außenbereich" width="297" height="396" loading="lazy" />
+              <img src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_2_min (1).webp" alt="Blue Moon Wuppertal – Galerie Bild 1" loading="lazy" />
             </div>
             <div class="galerie-carousel-slide">
-              <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=297x10000:format=jpg/path/sf786fa71b6f524a4/image/i16ee486ebd43eb96/version/1494273105/image.jpg" alt="Blue Moon Wuppertal – Terrasse Außenansicht" width="297" height="396" loading="lazy" />
+              <img src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_5_min (1).webp" alt="Blue Moon Wuppertal – Galerie Bild 2" loading="lazy" />
             </div>
             <div class="galerie-carousel-slide">
-              <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=297x10000:format=jpg/path/sf786fa71b6f524a4/image/ib404e66ab23955a2/version/1494273123/image.jpg" alt="Blue Moon Wuppertal – Außenbereich" width="297" height="396" loading="lazy" />
+              <img src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_7_min (1).webp" alt="Blue Moon Wuppertal – Galerie Bild 3" loading="lazy" />
             </div>
             <div class="galerie-carousel-slide">
-              <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=1000x10000:format=jpg/path/sf786fa71b6f524a4/image/i5efbc74d9f0de6c0/version/1718000353/image.jpg" alt="Blue Moon – Speisekarte und Angebote" width="1000" height="422" loading="lazy" />
+              <img src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_8_min (1).webp" alt="Blue Moon – Galerie Bild 4" loading="lazy" />
             </div>
             <div class="galerie-carousel-slide">
-              <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=1000x10000:format=jpg/path/sf786fa71b6f524a4/image/ic76d2a42ee407cb9/version/1718000372/image.jpg" alt="Blue Moon – Gerichte und Aktionen" width="1000" height="422" loading="lazy" />
+              <img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_0_min.webp" alt="Blue Moon – Galerie Bild 5" loading="lazy" />
+            </div>
+            <div class="galerie-carousel-slide">
+              <img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_1_min.webp" alt="Blue Moon Wuppertal – Galerie Bild 6" loading="lazy" />
+            </div>
+            <div class="galerie-carousel-slide">
+              <img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_2_min.webp" alt="Blue Moon Wuppertal – Galerie Bild 7" loading="lazy" />
+            </div>
+            <div class="galerie-carousel-slide">
+              <img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_3_min.webp" alt="Blue Moon Wuppertal – Galerie Bild 8" loading="lazy" />
+            </div>
+            <div class="galerie-carousel-slide">
+              <img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_4_min.webp" alt="Blue Moon Wuppertal – Galerie Bild 9" loading="lazy" />
+            </div>
+            <div class="galerie-carousel-slide">
+              <img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_6_min.webp" alt="Blue Moon Wuppertal – Galerie Bild 10" loading="lazy" />
+            </div>
+            <div class="galerie-carousel-slide">
+              <img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_7_min.webp" alt="Blue Moon Wuppertal – Galerie Bild 11" loading="lazy" />
             </div>
           </div>
           <div class="galerie-carousel-dots" id="galerie-carousel-dots">
@@ -2818,6 +3051,12 @@ DOCTYPE html>
             <button class="dot" aria-label="Bild 3"></button>
             <button class="dot" aria-label="Bild 4"></button>
             <button class="dot" aria-label="Bild 5"></button>
+            <button class="dot" aria-label="Bild 6"></button>
+            <button class="dot" aria-label="Bild 7"></button>
+            <button class="dot" aria-label="Bild 8"></button>
+            <button class="dot" aria-label="Bild 9"></button>
+            <button class="dot" aria-label="Bild 10"></button>
+            <button class="dot" aria-label="Bild 11"></button>
           </div>
         </div>
 
@@ -2828,14 +3067,15 @@ DOCTYPE html>
 
 <!-- ÖFFNUNGSZEITEN -->
 <section class="zeiten" id="zeiten" aria-labelledby="zeiten-title">
+  <canvas id="stars-canvas-zeiten" aria-hidden="true"></canvas>
   <div class="container">
     <div class="zeiten-header reveal">
       <span class="overline">Wir sind für euch da</span>
-      <h2 class="section-title" id="zeiten-title">Öffnungs<em>zeiten</em></h2>
+      <h2 class="section-title" id="zeiten-title" style="color:#ffffff">Öffnungs<em style="color:inherit">zeiten</em></h2>
     </div>
     <div class="zeiten-grid">
 
-      <div class="zeiten-block reveal reveal-delay-1">
+      <div class="zeiten-block reveal-left reveal-delay-1">
         <h3 class="zeiten-block-title">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
@@ -2863,7 +3103,7 @@ DOCTYPE html>
         <p class="zeiten-note">* Schließzeiten können betriebsbedingt abweichen.</p>
       </div>
 
-      <div class="zeiten-block reveal reveal-delay-2">
+      <div class="zeiten-block reveal-right reveal-delay-2">
         <h3 class="zeiten-block-title">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <path d="M3 2h18M3 7h18M3 12h5M16 12h5M3 17h5M16 17h5M8 7v15M16 7v15"/>
@@ -2925,6 +3165,7 @@ DOCTYPE html>
 </section>
 
 <!-- VERANSTALTUNGEN -->
+<div class="veranstaltungen-scroll-wrapper">
 <section class="veranstaltungen" id="veranstaltungen" aria-labelledby="veranstaltungen-title">
   <img id="veranstaltungen-animation" src="frames_4/frames_4_000.jpg"
        alt="" loading="lazy" aria-hidden="true" />
@@ -2934,8 +3175,8 @@ DOCTYPE html>
     <div class="ev-cols">
     <div class="ev-header">
       <span class="veranstaltungen-overline">Was ist los bei uns</span>
-      <h2 class="section-title" id="veranstaltungen-title">
-        Ver<em>anstaltungen</em>
+      <h2 class="section-title" id="veranstaltungen-title" style="text-align:center; font-size:65.28px; color:#e8922a">
+        Ver<em style="color:inherit">anstaltungen</em>
       </h2>
     </div>
 
@@ -2999,6 +3240,7 @@ DOCTYPE html>
     </div><!-- /.ev-cols -->
   </div>
 </section>
+</div><!-- /.veranstaltungen-scroll-wrapper -->
 
 <!-- Veranstaltungen Vollbild-Modal -->
 <div class="ev-fullscreen-modal" id="ev-fullscreen-modal" role="dialog" aria-modal="true" aria-label="Bild vollständig">
@@ -3136,6 +3378,19 @@ DOCTYPE html>
   </div>
 </footer>
 
+<!-- Galerie Lightbox (außerhalb aller Sections für korrektes position:fixed) -->
+<div class="galerie-lightbox" id="galerieLightbox">
+  <div class="galerie-lightbox-container">
+    <img id="galerieLightboxImg" class="galerie-lightbox-img" src="" alt="Galerie Bild vergrößert" />
+    <button class="galerie-lightbox-nav galerie-lightbox-prev" id="galerieLightboxPrev" aria-label="Vorheriges Bild">‹</button>
+    <button class="galerie-lightbox-nav galerie-lightbox-next" id="galerieLightboxNext" aria-label="Nächstes Bild">›</button>
+    <button class="galerie-lightbox-close" id="galerieLightboxClose" aria-label="Schließen">✕</button>
+    <div class="galerie-lightbox-counter">
+      <span id="galerieLightboxCounter">1 / 11</span>
+    </div>
+  </div>
+</div>
+
 <script>
   /* ── Scroll Hero Animation ──────────────────────────────────── */
   (function () {
@@ -3265,6 +3520,36 @@ DOCTYPE html>
     }, 20000);
   })();
 
+  /* ── Hero Title Letter Split ─────────────────────────────────── */
+  (function () {
+    var h1 = document.getElementById('hov-title');
+    if (!h1) return;
+    var letterIndex = 0;
+    function splitLetters(el) {
+      Array.from(el.childNodes).forEach(function (node) {
+        if (node.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          node.textContent.split('').forEach(function (char) {
+            if (char === ' ') {
+              frag.appendChild(document.createTextNode(' '));
+            } else {
+              var span = document.createElement('span');
+              span.className = 'hero-letter';
+              span.textContent = char;
+              span.style.setProperty('--letter-delay', (letterIndex * 60) + 'ms');
+              letterIndex++;
+              frag.appendChild(span);
+            }
+          });
+          node.parentNode.replaceChild(frag, node);
+        } else if (node.nodeType === 1) {
+          splitLetters(node);
+        }
+      });
+    }
+    splitLetters(h1);
+  })();
+
   /* ── Cocktail Scroll Animation ───────────────────────────────── */
   (function () {
     const FRAME_COUNT   = 193;
@@ -3391,11 +3676,18 @@ DOCTYPE html>
     const END_FRAME    = 144;
     const REVEAL_FRAME = 120;
 
+    // Animation occupies first 56% of the (now 500vh) wrapper scroll,
+    // matching the original 280vh animation speed.
+    const ANIM_END_P   = 280 / 500;  // ≈ 0.56
+    const PAN_START_P  = ANIM_END_P; // gallery pans after animation ends
+    const FADE_START_P = 0.85;       // content fades to transparent at 85%
+
     const imgEl       = document.getElementById('galerie-animation');
     const darkOverlay = document.getElementById('galerie-dark-overlay');
     const wrapper     = document.querySelector('.galerie-scroll-wrapper');
     const gridItems   = document.querySelectorAll('.galerie-grid .galerie-item');
     const headerEl    = document.getElementById('galerie-header');
+    const contentEl   = document.querySelector('.galerie-content');
 
     let currentIdx = -1;
     let rafPending = false;
@@ -3418,12 +3710,15 @@ DOCTYPE html>
         const totalScroll = wrapper.offsetHeight - window.innerHeight;
         const scrolled    = -rect.top;
         const p           = Math.max(0, Math.min(1, scrolled / totalScroll));
-        const idx         = Math.round(START_FRAME + p * (END_FRAME - START_FRAME));
+
+        // Map animation frames only to first ANIM_END_P of scroll (preserves original speed)
+        const pAnim = Math.min(1, p / ANIM_END_P);
+        const idx   = Math.round(START_FRAME + pAnim * (END_FRAME - START_FRAME));
 
         // Header: fade in + scale from 2.6 → 1.0, finishes exactly when grid images reveal
         if (headerEl) {
           const headerEndP = (REVEAL_FRAME - START_FRAME) / (END_FRAME - START_FRAME);
-          const hP = Math.max(0, Math.min(1, p / headerEndP));
+          const hP = Math.max(0, Math.min(1, pAnim / headerEndP));
           const scale = 2.6 - 1.6 * hP;
           headerEl.style.opacity = hP;
           headerEl.style.transform = 'scale(' + scale + ')';
@@ -3451,6 +3746,29 @@ DOCTYPE html>
           revealed = false;
           gridItems.forEach(function (item) { item.classList.remove('galerie-revealed'); });
           if (carouselEl) carouselEl.classList.remove('galerie-revealed');
+        }
+
+        // Pan galerie-content upward after animation finishes (reveals new rows)
+        if (contentEl) {
+          if (p > PAN_START_P && p < FADE_START_P) {
+            const panRange = FADE_START_P - PAN_START_P;
+            const panP     = Math.min(1, (p - PAN_START_P) / panRange);
+            const maxPan   = Math.max(0, contentEl.offsetHeight - window.innerHeight + 80);
+            contentEl.style.transform = 'translateY(-' + (panP * maxPan) + 'px)';
+          } else if (p <= PAN_START_P) {
+            contentEl.style.transform = '';
+          }
+
+          // Fade out galerie-content at the bottom of the section
+          if (p >= FADE_START_P) {
+            const fadeP = Math.min(1, (p - FADE_START_P) / (1 - FADE_START_P));
+            const panP  = 1; // stay at max pan while fading
+            const maxPan = Math.max(0, contentEl.offsetHeight - window.innerHeight + 80);
+            contentEl.style.transform = 'translateY(-' + maxPan + 'px)';
+            contentEl.style.opacity   = 1 - fadeP;
+          } else {
+            contentEl.style.opacity = '';
+          }
         }
       });
     }
@@ -3504,61 +3822,12 @@ DOCTYPE html>
     });
   })();
 
-  /* ── Starfield ──────────────────────────────────────────────── */
+  /* ── Galerie: Star-Canvas deaktivieren ──────────────────────── */
   (function () {
-    const canvas = document.getElementById('stars-canvas');
-    const ctx = canvas.getContext('2d');
-    const galerieSection = document.querySelector('.galerie');
-    let stars = [], raf;
-
-    function resize() {
-      if (galerieSection) {
-        const rect = galerieSection.getBoundingClientRect();
-        canvas.width = rect.width;
-        canvas.height = rect.height;
-        canvas.style.position = 'absolute';
-        canvas.style.top = '0';
-        canvas.style.left = '0';
-      } else {
-        canvas.width  = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-    }
-    function initStars(n) {
-      stars = [];
-      for (let i = 0; i < n; i++) {
-        stars.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          r: Math.random() * 1.1 + .15,
-          a: Math.random() * .85 + .15,
-          speed: Math.random() * .0025 + .001,
-          phase: Math.random() * Math.PI * 2,
-        });
-      }
-    }
-    function draw(t) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      stars.forEach(s => {
-        const alpha = .25 + .75 * (Math.sin(s.phase + t * s.speed) * .5 + .5);
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(240, 228, 195, ${alpha * s.a})`;
-        ctx.fill();
-      });
-      raf = requestAnimationFrame(draw);
-    }
-    resize(); initStars(240);
-    raf = requestAnimationFrame(draw);
-    window.addEventListener('resize', () => { resize(); initStars(240); });
-    // Observe galerie section size changes
-    if (galerieSection) {
-      const resizeObserver = new ResizeObserver(() => { resize(); initStars(240); });
-      resizeObserver.observe(galerieSection);
-    }
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) cancelAnimationFrame(raf);
-      else raf = requestAnimationFrame(draw);
+    const galerie = document.querySelector('.galerie');
+    if (!galerie) return;
+    galerie.querySelectorAll('canvas[id^="stars-canvas"]').forEach(function (canvas) {
+      canvas.remove();
     });
   })();
 
@@ -3671,6 +3940,63 @@ DOCTYPE html>
     if (neuSection) {
       const resizeObserver = new ResizeObserver(() => { resize(); initStars(180); });
       resizeObserver.observe(neuSection);
+    }
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) cancelAnimationFrame(raf);
+      else raf = requestAnimationFrame(draw);
+    });
+  })();
+
+  /* ── Starfield Zeiten ────────────────────────────────────────── */
+  (function () {
+    const canvas = document.getElementById('stars-canvas-zeiten');
+    const ctx = canvas.getContext('2d');
+    const zeitenSection = document.querySelector('.zeiten');
+    let stars = [], raf;
+
+    function resize() {
+      if (zeitenSection) {
+        const rect = zeitenSection.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+        canvas.style.position = 'absolute';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+      } else {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+    }
+    function initStars(n) {
+      stars = [];
+      for (let i = 0; i < n; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 1.1 + .15,
+          a: Math.random() * .85 + .15,
+          speed: Math.random() * .0025 + .001,
+          phase: Math.random() * Math.PI * 2,
+        });
+      }
+    }
+    function draw(t) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(s => {
+        const alpha = .25 + .75 * (Math.sin(s.phase + t * s.speed) * .5 + .5);
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(240, 228, 195, ${alpha * s.a})`;
+        ctx.fill();
+      });
+      raf = requestAnimationFrame(draw);
+    }
+    resize(); initStars(170);
+    raf = requestAnimationFrame(draw);
+    window.addEventListener('resize', () => { resize(); initStars(170); });
+    if (zeitenSection) {
+      const resizeObserver = new ResizeObserver(() => { resize(); initStars(170); });
+      resizeObserver.observe(zeitenSection);
     }
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) cancelAnimationFrame(raf);
@@ -3942,6 +4268,124 @@ DOCTYPE html>
     document.addEventListener('visibilitychange', function() {
       if (document.hidden) cancelAnimationFrame(rafId);
       else rafId = requestAnimationFrame(tick);
+    });
+  })();
+
+  /* ── Veranstaltungen Scroll Animation ─────────────────────── */
+  (function () {
+    var wrapper  = document.querySelector('.veranstaltungen-scroll-wrapper');
+    var evHeader  = document.querySelector('.ev-header');
+    var evCarousel = document.querySelector('.ev-carousel-wrap');
+    if (!wrapper || !evHeader || !evCarousel) return;
+
+    var TRIGGER_P = 0.6;
+    var EV_OFFSET = 30; // px nach unten
+
+    // Desktop-Offset sofort setzen (vor erstem Scroll-Event)
+    if (window.innerWidth >= 769) {
+      evHeader.style.top = 'calc(var(--nav-h) + 8rem + ' + EV_OFFSET + 'px)';
+    }
+
+    window.addEventListener('scroll', function () {
+      var rect = wrapper.getBoundingClientRect();
+      var totalScroll = wrapper.offsetHeight - window.innerHeight;
+      if (totalScroll <= 0) return;
+      var scrolled = -rect.top;
+      var p = Math.max(0, Math.min(1, scrolled / totalScroll));
+
+      // Scale header 2.6 → 1 + fade in (desktop only)
+      if (window.innerWidth >= 769) {
+        var hP = Math.max(0, Math.min(1, p / TRIGGER_P));
+        var scale = 2.6 - 1.6 * hP;
+        evHeader.style.opacity = hP;
+        evHeader.style.transform = 'scale(' + scale + ')';
+        evHeader.style.top = 'calc(var(--nav-h) + 8rem + ' + EV_OFFSET + 'px)';
+      }
+
+      // Toggle lightbox visible at trigger point
+      var reveal = p >= TRIGGER_P;
+      evCarousel.classList.toggle('lightbox-visible', reveal);
+      evHeader.classList.toggle('show', reveal);
+    }, { passive: true });
+  })();
+
+  /* ── Galerie Lightbox Navigation ──── */
+  (function () {
+    var lightbox = document.getElementById('galerieLightbox');
+    var lightboxImg = document.getElementById('galerieLightboxImg');
+    var lightboxCounter = document.getElementById('galerieLightboxCounter');
+    var prevBtn = document.getElementById('galerieLightboxPrev');
+    var nextBtn = document.getElementById('galerieLightboxNext');
+    var closeBtn = document.getElementById('galerieLightboxClose');
+    if (!lightbox || !lightboxImg) return;
+
+    var currentIndex = 0;
+    var images = [];
+
+    // Sammle alle Bilder aus Grid (Desktop) und Carousel (Mobil)
+    var gridImgs = document.querySelectorAll('.galerie-grid .galerie-item img');
+    var carouselImgs = document.querySelectorAll('.galerie-carousel-slide img');
+
+    gridImgs.forEach(function (img) { images.push(img.getAttribute('src')); });
+
+    function openLightbox(idx) {
+      currentIndex = idx;
+      showImage();
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function showImage() {
+      if (images[currentIndex]) {
+        lightboxImg.src = images[currentIndex];
+        lightboxCounter.textContent = (currentIndex + 1) + ' / ' + images.length;
+      }
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      showImage();
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      showImage();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Klick auf Grid-Items (Desktop)
+    document.querySelectorAll('.galerie-grid .galerie-item').forEach(function (item, idx) {
+      item.addEventListener('click', function () { openLightbox(idx); });
+    });
+
+    // Klick auf Carousel-Slides (Mobil)
+    document.querySelectorAll('.galerie-carousel-slide').forEach(function (slide, idx) {
+      slide.style.cursor = 'pointer';
+      slide.addEventListener('click', function () { openLightbox(idx); });
+    });
+
+    // Navigation
+    prevBtn.addEventListener('click', prevImage);
+    nextBtn.addEventListener('click', nextImage);
+    closeBtn.addEventListener('click', closeLightbox);
+
+    // Tastatur-Steuerung
+    document.addEventListener('keydown', function (e) {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Schließe bei Klick auf Hintergrund
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox || e.target === lightbox.querySelector('.galerie-lightbox-container')) {
+        closeLightbox();
+      }
     });
   })();
 </script>
