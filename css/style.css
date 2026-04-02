@@ -1576,12 +1576,12 @@ line-height: 22px;
 .reveal-left.visible,
 .reveal-right.visible { opacity: 1; transform: none; }
 .neu-card.reveal-right.visible {
-  background-image: url('getraenke/pizza.png');
+  background-image: url('../getraenke/pizza.png');
   background-size: cover;
   background-position: center;
 }
 .neu-card.reveal-left.visible {
-  background-image: url('getraenke/to-go-theke.png');
+  background-image: url('../getraenke/to-go-theke.png');
   background-size: cover;
   background-position: center;
 }
