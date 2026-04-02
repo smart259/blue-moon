@@ -957,6 +957,20 @@ line-height: 22px;
   opacity: 1 !important;
   transform: translateX(0) !important;
 }
+
+/* Instant reveal without transitions */
+.galerie.instant-complete .galerie-item {
+  transition: none !important;
+}
+.galerie.instant-complete .galerie-header {
+  transition: none !important;
+}
+.galerie.instant-complete #galerie-dark-overlay {
+  transition: none !important;
+}
+.galerie.instant-complete .galerie-content {
+  transition: none !important;
+}
 .galerie-item:nth-child(2)  { transition-delay: .08s; }
 .galerie-item:nth-child(3)  { transition-delay: .16s; }
 .galerie-item:nth-child(4)  { transition-delay: .12s; }
@@ -1547,6 +1561,45 @@ line-height: 22px;
   text-transform: uppercase;
 }
 
+/* ── SCROLL TO TOP BUTTON ──────────────────────────────────── */
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--amber);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  transition: transform .3s var(--ease-out), box-shadow .3s, background .25s;
+  box-shadow: 0 4px 28px rgba(0, 0, 0, .3);
+  min-height: 50px;
+  padding: 0;
+}
+.scroll-to-top-btn:hover {
+  background: var(--amber-light);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 36px rgba(0, 0, 0, .5);
+}
+.scroll-to-top-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+.scroll-to-top-btn:active {
+  transform: scale(.95);
+}
+.scroll-to-top-btn svg {
+  width: 24px;
+  height: 24px;
+  color: var(--bg);
+  display: block;
+}
+
 /* ── SCROLL REVEAL ──────────────────────────────────────────── */
 .reveal {
   opacity: 0;
@@ -1592,6 +1645,8 @@ line-height: 22px;
   .zeiten-extras { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 768px) {
+  .scroll-to-top-btn { bottom: 1.5rem; right: 1.5rem; width: 44px; height: 44px; }
+  .scroll-to-top-btn svg { width: 20px; height: 20px; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
   .nav-logo-img { height: 64px; }

@@ -1532,6 +1532,73 @@
     preload();
   })();
 
+  /* ── Galerie Animation Completion (on nav click) ────────────────────────────────── */
+  (function () {
+    // Complete all galerie animations immediately
+    function completeGalerieAnimation() {
+      const galerieEl = document.querySelector('.galerie');
+      const gridItems = document.querySelectorAll('.galerie-grid .galerie-item');
+      const headerEl = document.getElementById('galerie-header');
+      const darkOverlay = document.getElementById('galerie-dark-overlay');
+      const contentEl = document.querySelector('.galerie-content');
+      const imgEl = document.getElementById('galerie-animation');
+
+      // Add class to disable transitions
+      if (galerieEl) {
+        galerieEl.classList.add('instant-complete');
+      }
+
+      // Set all grid items to revealed state
+      gridItems.forEach(function (item) {
+        item.classList.add('galerie-revealed');
+      });
+
+      // Set header to final state (opacity: 1, scale: 1)
+      if (headerEl) {
+        headerEl.style.opacity = '1';
+        headerEl.style.transform = 'scale(1)';
+      }
+
+      // Set dark overlay to final state (opacity: 0.8)
+      if (darkOverlay) {
+        darkOverlay.style.opacity = '0.8';
+      }
+
+      // Set the final frame (END_FRAME = 144)
+      if (imgEl) {
+        imgEl.src = 'frames_3/frames_3_144.jpg';
+      }
+
+      // Set content to panned position (at the end) and visible
+      if (contentEl) {
+        const maxPan = Math.max(0, contentEl.offsetHeight - window.innerHeight + 80);
+        contentEl.style.transform = 'translateY(-' + maxPan + 'px)';
+        contentEl.style.opacity = '1';
+      }
+    }
+
+    // Trigger completion when galerie navigation link is clicked
+    const galerieLinks = document.querySelectorAll('a[href="#galerie"]');
+    galerieLinks.forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        // Schedule completion after the scroll has started
+        setTimeout(completeGalerieAnimation, 50);
+      });
+    });
+
+    // Also use Intersection Observer to complete animation when galerie becomes visible
+    const galerieWrapper = document.querySelector('.galerie-scroll-wrapper');
+    if (galerieWrapper) {
+      const observer = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          completeGalerieAnimation();
+          observer.disconnect();
+        }
+      }, { threshold: 0.01 });
+      observer.observe(galerieWrapper);
+    }
+  })();
+
   /* ── Galerie Karussell (mobil) ──────────────────────────────── */
   (function () {
     var track  = document.getElementById('galerie-carousel-track');
@@ -1942,6 +2009,27 @@
       }
     });
   })();
+
+  /* ── Scroll to Top Button ──── */
+  (function () {
+    const scrollBtn = document.getElementById('scrollToTopBtn');
+    if (!scrollBtn) return;
+
+    scrollBtn.addEventListener('click', function () {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  })();
 </script>
+
+<!-- Scroll to Top Button -->
+<button id="scrollToTopBtn" class="scroll-to-top-btn" aria-label="Zum Anfang springen">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="12" y1="19" x2="12" y2="5"></line>
+    <polyline points="5 12 12 5 19 12"></polyline>
+  </svg>
+</button>
 </body>
 </html>
