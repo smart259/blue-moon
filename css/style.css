@@ -2022,7 +2022,7 @@ line-height: 22px;
   border: 1px solid var(--border);
   border-radius: 20px;
   overflow: visible;
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(2px);
   transition: box-shadow .4s var(--ease-out);
 }
 
