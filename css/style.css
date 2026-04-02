@@ -1575,12 +1575,12 @@ line-height: 22px;
 .reveal-right.reveal-delay-2 { transition-delay: .16s; }
 .reveal-left.visible,
 .reveal-right.visible { opacity: 1; transform: none; }
-.neu-card.reveal-right.visible {
+.neu-card.reveal-right {
   background-image: url('getraenke/pizza.png');
   background-size: cover;
   background-position: center;
 }
-.neu-card.reveal-left.visible {
+.neu-card.reveal-left {
   background-image: url('getraenke/to-go-theke.png');
   background-size: cover;
   background-position: center;
