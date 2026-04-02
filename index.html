@@ -912,8 +912,9 @@
 <!-- VERANSTALTUNGEN -->
 <div class="veranstaltungen-scroll-wrapper">
 <section class="veranstaltungen" id="veranstaltungen" aria-labelledby="veranstaltungen-title">
-  <img id="veranstaltungen-animation" src="frames_4/frames_4_000.jpg"
-       alt="" loading="lazy" aria-hidden="true" />
+  <video id="veranstaltungen-animation" muted autoplay loop playsinline aria-hidden="true">
+    <source src="frames_5/frames_5_3.mp4" type="video/mp4" />
+  </video>
   <div class="veranstaltungen-overlay"></div>
 
   <div class="veranstaltungen-content">
@@ -1822,39 +1823,7 @@
   })();
 
   /* ── Veranstaltungen Frame Animation (auto-play) ───────────── */
-  (function () {
-    const TOTAL    = 289;
-    const FPS      = 24;
-    const imgEl    = document.getElementById('veranstaltungen-animation');
-    if (!imgEl) return;
-
-    function padded(n) { return String(n).padStart(3, '0'); }
-
-    var idx      = 0;
-    var lastTime = 0;
-    var interval = 1000 / FPS;
-
-    // Preload all frames
-    for (var i = 0; i < TOTAL; i++) {
-      var img = new Image();
-      img.src = 'frames_4/frames_4_' + padded(i) + '.jpg';
-    }
-
-    var rafId;
-    function tick(ts) {
-      if (ts - lastTime >= interval) {
-        lastTime = ts;
-        imgEl.src = 'frames_4/frames_4_' + padded(idx) + '.jpg';
-        idx = (idx + 1) % TOTAL;
-      }
-      rafId = requestAnimationFrame(tick);
-    }
-    rafId = requestAnimationFrame(tick);
-    document.addEventListener('visibilitychange', function() {
-      if (document.hidden) cancelAnimationFrame(rafId);
-      else rafId = requestAnimationFrame(tick);
-    });
-  })();
+  // Video plays automatically with autoplay + loop attributes
 
   /* ── Veranstaltungen Scroll Animation ─────────────────────── */
   (function () {
