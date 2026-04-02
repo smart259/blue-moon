@@ -183,8 +183,8 @@
 
 <!-- NEU -->
 <section class="neu" id="neu" aria-labelledby="neu-title">
-  <!-- Starfield Canvas for Neu Background -->
-  <canvas id="stars-canvas-neu" aria-hidden="true"></canvas>
+  <!-- Starfield SVG for Neu Background -->
+  <svg class="stars-svg" id="stars-svg-neu" aria-hidden="true" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"></svg>
   <div class="container">
     <div class="neu-header reveal">
       <span class="overline">Neu bei uns</span>
@@ -568,8 +568,8 @@
 
 <!-- AKTIONEN -->
 <section class="aktionen" id="aktionen" aria-labelledby="aktionen-title">
-  <!-- Starfield Canvas for Aktionen Background -->
-  <canvas id="stars-canvas-aktionen" aria-hidden="true"></canvas>
+  <!-- Starfield SVG for Aktionen Background -->
+  <svg class="stars-svg" id="stars-svg-aktionen" aria-hidden="true" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"></svg>
   <div class="container">
     <div class="aktionen-header reveal">
       <span class="overline">Wochentags-Specials</span>
@@ -812,7 +812,7 @@
 
 <!-- ÖFFNUNGSZEITEN -->
 <section class="zeiten" id="zeiten" aria-labelledby="zeiten-title">
-  <canvas id="stars-canvas-zeiten" aria-hidden="true"></canvas>
+  <svg class="stars-svg" id="stars-svg-zeiten" aria-hidden="true" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"></svg>
   <div class="container">
     <div class="zeiten-header reveal">
       <span class="overline">Wir sind für euch da</span>
@@ -1567,186 +1567,26 @@
     });
   })();
 
-  /* ── Galerie: Star-Canvas deaktivieren ──────────────────────── */
+  /* ── Starfield SVG (Aktionen / Neu / Zeiten) ────────────────── */
   (function () {
-    const galerie = document.querySelector('.galerie');
-    if (!galerie) return;
-    galerie.querySelectorAll('canvas[id^="stars-canvas"]').forEach(function (canvas) {
-      canvas.remove();
-    });
-  })();
-
-  /* ── Starfield Aktionen ───────────────────────────────────────── */
-  (function () {
-    const canvas = document.getElementById('stars-canvas-aktionen');
-    const ctx = canvas.getContext('2d');
-    const aktionenSection = document.querySelector('.aktionen');
-    let stars = [], raf;
-
-    function resize() {
-      if (aktionenSection) {
-        const rect = aktionenSection.getBoundingClientRect();
-        canvas.width = rect.width;
-        canvas.height = rect.height;
-        canvas.style.position = 'absolute';
-        canvas.style.top = '0';
-        canvas.style.left = '0';
-      } else {
-        canvas.width  = window.innerWidth;
-        canvas.height = window.innerHeight;
+    const ns = 'http://www.w3.org/2000/svg';
+    function initSVGStars(svgId, count) {
+      const svg = document.getElementById(svgId);
+      if (!svg) return;
+      for (let i = 0; i < count; i++) {
+        const circle = document.createElementNS(ns, 'circle');
+        circle.setAttribute('cx', (Math.random() * 1000).toFixed(1));
+        circle.setAttribute('cy', (Math.random() * 600).toFixed(1));
+        circle.setAttribute('r',  (Math.random() * 1.1 + 0.3).toFixed(2));
+        circle.classList.add('star');
+        circle.style.setProperty('--dur',   (2.5 + Math.random() * 3).toFixed(1) + 's');
+        circle.style.setProperty('--delay', (Math.random() * 4).toFixed(2) + 's');
+        svg.appendChild(circle);
       }
     }
-    function initStars(n) {
-      stars = [];
-      for (let i = 0; i < n; i++) {
-        stars.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          r: Math.random() * 1.1 + .15,
-          a: Math.random() * .85 + .15,
-          speed: Math.random() * .0025 + .001,
-          phase: Math.random() * Math.PI * 2,
-        });
-      }
-    }
-    function draw(t) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      stars.forEach(s => {
-        const alpha = .25 + .75 * (Math.sin(s.phase + t * s.speed) * .5 + .5);
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(240, 228, 195, ${alpha * s.a})`;
-        ctx.fill();
-      });
-      raf = requestAnimationFrame(draw);
-    }
-    resize(); initStars(200);
-    raf = requestAnimationFrame(draw);
-    window.addEventListener('resize', () => { resize(); initStars(200); });
-    // Observe aktionen section size changes
-    if (aktionenSection) {
-      const resizeObserver = new ResizeObserver(() => { resize(); initStars(200); });
-      resizeObserver.observe(aktionenSection);
-    }
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) cancelAnimationFrame(raf);
-      else raf = requestAnimationFrame(draw);
-    });
-  })();
-
-  /* ── Starfield Neu ───────────────────────────────────────────── */
-  (function () {
-    const canvas = document.getElementById('stars-canvas-neu');
-    const ctx = canvas.getContext('2d');
-    const neuSection = document.querySelector('.neu');
-    let stars = [], raf;
-
-    function resize() {
-      if (neuSection) {
-        const rect = neuSection.getBoundingClientRect();
-        canvas.width = rect.width;
-        canvas.height = rect.height;
-        canvas.style.position = 'absolute';
-        canvas.style.top = '0';
-        canvas.style.left = '0';
-      } else {
-        canvas.width  = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-    }
-    function initStars(n) {
-      stars = [];
-      for (let i = 0; i < n; i++) {
-        stars.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          r: Math.random() * 1.1 + .15,
-          a: Math.random() * .85 + .15,
-          speed: Math.random() * .0025 + .001,
-          phase: Math.random() * Math.PI * 2,
-        });
-      }
-    }
-    function draw(t) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      stars.forEach(s => {
-        const alpha = .25 + .75 * (Math.sin(s.phase + t * s.speed) * .5 + .5);
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(240, 228, 195, ${alpha * s.a})`;
-        ctx.fill();
-      });
-      raf = requestAnimationFrame(draw);
-    }
-    resize(); initStars(180);
-    raf = requestAnimationFrame(draw);
-    window.addEventListener('resize', () => { resize(); initStars(180); });
-    // Observe neu section size changes
-    if (neuSection) {
-      const resizeObserver = new ResizeObserver(() => { resize(); initStars(180); });
-      resizeObserver.observe(neuSection);
-    }
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) cancelAnimationFrame(raf);
-      else raf = requestAnimationFrame(draw);
-    });
-  })();
-
-  /* ── Starfield Zeiten ────────────────────────────────────────── */
-  (function () {
-    const canvas = document.getElementById('stars-canvas-zeiten');
-    const ctx = canvas.getContext('2d');
-    const zeitenSection = document.querySelector('.zeiten');
-    let stars = [], raf;
-
-    function resize() {
-      if (zeitenSection) {
-        const rect = zeitenSection.getBoundingClientRect();
-        canvas.width = rect.width;
-        canvas.height = rect.height;
-        canvas.style.position = 'absolute';
-        canvas.style.top = '0';
-        canvas.style.left = '0';
-      } else {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-    }
-    function initStars(n) {
-      stars = [];
-      for (let i = 0; i < n; i++) {
-        stars.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          r: Math.random() * 1.1 + .15,
-          a: Math.random() * .85 + .15,
-          speed: Math.random() * .0025 + .001,
-          phase: Math.random() * Math.PI * 2,
-        });
-      }
-    }
-    function draw(t) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      stars.forEach(s => {
-        const alpha = .25 + .75 * (Math.sin(s.phase + t * s.speed) * .5 + .5);
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(240, 228, 195, ${alpha * s.a})`;
-        ctx.fill();
-      });
-      raf = requestAnimationFrame(draw);
-    }
-    resize(); initStars(170);
-    raf = requestAnimationFrame(draw);
-    window.addEventListener('resize', () => { resize(); initStars(170); });
-    if (zeitenSection) {
-      const resizeObserver = new ResizeObserver(() => { resize(); initStars(170); });
-      resizeObserver.observe(zeitenSection);
-    }
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) cancelAnimationFrame(raf);
-      else raf = requestAnimationFrame(draw);
-    });
+    initSVGStars('stars-svg-aktionen', 200);
+    initSVGStars('stars-svg-neu',      180);
+    initSVGStars('stars-svg-zeiten',   170);
   })();
 
   /* ── Scroll Reveal ──────────────────────────────────────────── */

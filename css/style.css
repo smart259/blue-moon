@@ -62,30 +62,28 @@ ul, ol { list-style: none; }
 .skip-link:focus { top: 0; outline: 2px solid var(--gold); outline-offset: 2px; }
 
 /* ── STARFIELD ─────────────────────────────────────────────── */
-#stars-canvas {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: .5;
-  /* Hidden while hero animation is in viewport; visible for rest of page */
-}
-.aktionen #stars-canvas-aktionen {
-  position: absolute;
-  opacity: 0.8;
-  z-index: -1;
-}
-.neu #stars-canvas-neu {
-  position: absolute;
-  opacity: 0.8;
-  z-index: -1;
-}
-.zeiten #stars-canvas-zeiten {
+.stars-svg {
   position: absolute;
   inset: 0;
-  opacity: 0.8;
-  z-index: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
+  z-index: 0;
+  opacity: 0.8;
+}
+
+.star {
+  fill: rgba(240, 228, 195, 0.85);
+  animation: twinkle var(--dur, 3s) var(--delay, 0s) ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.08; }
+  to   { opacity: 0.9; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .star { animation: none; opacity: 0.35; }
 }
 
 /* ── NAVIGATION ─────────────────────────────────────────────── */
