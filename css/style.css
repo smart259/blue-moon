@@ -1576,12 +1576,16 @@ line-height: 22px;
 .reveal-left.visible,
 .reveal-right.visible { opacity: 1; transform: none; }
 .neu-card.reveal-right {
-  background-image: url('getraenke/pizza.png');
+  background-image:
+    linear-gradient(135deg, rgba(8, 14, 40, .55) 0%, rgba(5, 9, 26, .65) 100%),
+    url('getraenke/pizza.png');
   background-size: cover;
   background-position: center;
 }
 .neu-card.reveal-left {
-  background-image: url('getraenke/to-go-theke.png');
+  background-image:
+    linear-gradient(135deg, rgba(8, 14, 40, .55) 0%, rgba(5, 9, 26, .65) 100%),
+    url('getraenke/to-go-theke.png');
   background-size: cover;
   background-position: center;
 }
