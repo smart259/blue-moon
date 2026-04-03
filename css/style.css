@@ -957,7 +957,7 @@ line-height: 22px;
   border: 1px solid var(--border);
   opacity: 0;
   transform: translateX(-70px);
-  transition: border-color .3s, opacity 2.1s cubic-bezier(.22,1,.36,1), transform 2.1s cubic-bezier(.22,1,.36,1);
+  transition: border-color .3s, opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1);
 }
 .galerie-item.from-left {
   transform: translateX(-70px);
