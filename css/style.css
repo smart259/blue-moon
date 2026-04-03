@@ -913,7 +913,7 @@ line-height: 22px;
   z-index: 1;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.1s linear;
+  transition: opacity 3.5s ease-out;
 }
 .galerie-vignette {
   position: absolute;
@@ -957,14 +957,38 @@ line-height: 22px;
   border: 1px solid var(--border);
   opacity: 0;
   transform: translateX(-70px);
-  transition: border-color .3s, opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+  transition: border-color .3s, opacity 2.1s cubic-bezier(.22,1,.36,1), transform 2.1s cubic-bezier(.22,1,.36,1);
 }
+.galerie-item.from-left {
+  transform: translateX(-70px);
+}
+.galerie-item.from-left.galerie-revealed {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
 .galerie-item.from-right {
   transform: translateX(70px);
 }
-.galerie-item.galerie-revealed {
+.galerie-item.from-right.galerie-revealed {
   opacity: 1 !important;
   transform: translateX(0) !important;
+}
+
+.galerie-item.from-top {
+  transform: translateY(-70px);
+}
+.galerie-item.from-top.galerie-revealed {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.galerie-item.from-bottom {
+  transform: translateY(70px);
+}
+.galerie-item.from-bottom.galerie-revealed {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 /* Instant reveal without transitions */
@@ -980,16 +1004,7 @@ line-height: 22px;
 .galerie.instant-complete .galerie-content {
   transition: none !important;
 }
-.galerie-item:nth-child(2)  { transition-delay: .08s; }
-.galerie-item:nth-child(3)  { transition-delay: .16s; }
-.galerie-item:nth-child(4)  { transition-delay: .12s; }
-.galerie-item:nth-child(5)  { transition-delay: .20s; }
-.galerie-item:nth-child(6)  { transition-delay: .06s; }
-.galerie-item:nth-child(7)  { transition-delay: .12s; }
-.galerie-item:nth-child(8)  { transition-delay: .18s; }
-.galerie-item:nth-child(9)  { transition-delay: .04s; }
-.galerie-item:nth-child(10) { transition-delay: .10s; }
-.galerie-item:nth-child(11) { transition-delay: .16s; }
+/* Stagger is handled via JavaScript setTimeout — no CSS delays needed */
 .g6, .g7, .g8, .g9, .g10, .g11 { grid-column: span 4; aspect-ratio: 4/3; }
 .galerie-item:hover { border-color: var(--border-hover); }
 .galerie-item img {

@@ -1437,9 +1437,17 @@
 
     let currentIdx = -1;
     let rafPending = false;
-    let revealedCount = 0;
-    
-    const REVEAL_END_FRAME = REVEAL_FRAME + 10;  // 10 frames (≈150-170ms) to reveal all items
+    let revealTriggered = false;
+    let revealTimers = [];
+
+    const REVEAL_END_FRAME = REVEAL_FRAME + 10;
+
+    // Pre-assign direction classes NOW so the browser sees the offset transform
+    // before galerie-revealed is ever added (must happen before first scroll)
+    const directionPattern = ['from-left', 'from-right', 'from-top', 'from-bottom'];
+    gridItems.forEach(function(item, i) {
+      item.classList.add(directionPattern[i % directionPattern.length]);
+    });
 
     function padded(n) { return String(n).padStart(3, '0'); }
 
@@ -1475,36 +1483,29 @@
         if (idx !== currentIdx) {
           currentIdx = idx;
           updateFrame(idx);
-
-          // Dark fade: starts at frame 110, fully dark by frame 120
-          const DARK_START = 110;
-          const DARK_END   = 120;
-          if (darkOverlay) {
-            const darkP = Math.max(0, Math.min(1, (idx - DARK_START) / (DARK_END - DARK_START)));
-            darkOverlay.style.opacity = darkP * 0.8;
-          }
         }
 
         var carouselEl = document.getElementById('galerie-carousel');
-        // Progressive reveal: progressively add galerie-revealed class based on frame position
-        const revealProgress = Math.max(0, Math.min(1, (idx - REVEAL_FRAME) / (REVEAL_END_FRAME - REVEAL_FRAME)));
-        const itemsToReveal = Math.round(revealProgress * gridItems.length);
 
-        // Add class to items that should be revealed
-        for (var i = 0; i < itemsToReveal; i++) {
-          gridItems[i].classList.add('galerie-revealed');
+        // Trigger staggered reveal once when animation reaches REVEAL_FRAME
+        if (idx >= REVEAL_FRAME && !revealTriggered) {
+          revealTriggered = true;
+          gridItems.forEach(function(item, i) {
+            var t = setTimeout(function() {
+              item.classList.add('galerie-revealed');
+            }, i * 700);
+            revealTimers.push(t);
+          });
+          if (carouselEl) { carouselEl.classList.add('galerie-revealed'); }
         }
 
-        // Remove class from items that should not be revealed yet
-        for (var i = itemsToReveal; i < gridItems.length; i++) {
-          gridItems[i].classList.remove('galerie-revealed');
-        }
-
-        // Apply carousel reveal
-        if (itemsToReveal > 0 && carouselEl) {
-          carouselEl.classList.add('galerie-revealed');
-        } else if (itemsToReveal === 0 && carouselEl) {
-          carouselEl.classList.remove('galerie-revealed');
+        // Un-reveal if scrolled back before reveal point
+        if (idx < REVEAL_FRAME && revealTriggered) {
+          revealTriggered = false;
+          revealTimers.forEach(function(t) { clearTimeout(t); });
+          revealTimers = [];
+          gridItems.forEach(function(item) { item.classList.remove('galerie-revealed'); });
+          if (carouselEl) { carouselEl.classList.remove('galerie-revealed'); }
         }
 
         // Pan galerie-content upward after animation finishes (reveals new rows)
@@ -1525,8 +1526,16 @@
             const maxPan = Math.max(0, contentEl.offsetHeight - window.innerHeight + 80);
             contentEl.style.transform = 'translateY(-' + maxPan + 'px)';
             contentEl.style.opacity   = 1 - fadeP;
+            
+            // Fade in dark overlay as content fades out
+            if (darkOverlay) {
+              darkOverlay.style.opacity = fadeP * 0.8;
+            }
           } else {
             contentEl.style.opacity = '';
+            if (darkOverlay) {
+              darkOverlay.style.opacity = '0';
+            }
           }
         }
       });
