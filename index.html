@@ -1921,7 +1921,23 @@
   })();
 
   /* ── Veranstaltungen Frame Animation (auto-play) ───────────── */
-  // Video plays automatically with autoplay + loop attributes
+  (function () {
+    var vid = document.getElementById('veranstaltungen-animation');
+    if (!vid) return;
+    vid.muted = true;
+    vid.loop  = true;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var p = vid.play();
+          if (p !== undefined) { p.catch(function () {}); }
+        } else {
+          vid.pause();
+        }
+      });
+    }, { threshold: 0.1 });
+    io.observe(vid);
+  })();
 
   /* ── Veranstaltungen Scroll Animation ─────────────────────── */
   (function () {
