@@ -713,13 +713,13 @@ line-height: 22px;
   background: var(--glass);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 2.2rem 1.3rem;
+  padding: 0 0 1.3rem 0;
   text-align: center;
   backdrop-filter: blur(14px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: .7rem;
+  gap: .3rem;
   transition: border-color .25s var(--ease-out), transform .25s var(--ease-out), box-shadow .25s;
   position: relative;
   overflow: hidden;
@@ -740,6 +740,14 @@ line-height: 22px;
   box-shadow: 0 16px 48px rgba(0, 0, 0, .45);
 }
 .aktion-card:hover::after { transform: scaleX(1); }
+.aktion-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 16px 16px 0 0;
+  display: block;
+  margin: 0 -1.3rem 0.5rem -1.3rem;
+}
 .aktion-emoji {
   font-size: 2.4rem;
   line-height: 1;
@@ -771,6 +779,7 @@ line-height: 22px;
   font-weight: 700;
   color: var(--gold);
   margin-top: auto;
+  margin-bottom: 0;
   letter-spacing: .01em;
 }
 
