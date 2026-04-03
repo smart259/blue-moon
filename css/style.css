@@ -1476,6 +1476,37 @@ line-height: 22px;
 .btn-tel:hover { border-color: var(--amber); color: var(--amber); transform: translateY(-2px); }
 .btn-tel:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
 
+/* ── INSTAGRAM BUTTON ───────────────────────────────────────── */
+.btn-instagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+  padding: .9rem 2.2rem;
+  background: #080f28;
+  color: #f3eadc;
+  border-radius: 40px;
+  font-family: 'Cinzel', serif;
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 4px 28px rgba(0,0,0,.3);
+  transition: background .25s, color .25s, transform .2s, box-shadow .2s;
+  min-height: 48px;
+  white-space: nowrap;
+}
+.btn-instagram:hover { background: #0b1238; color: var(--amber); box-shadow: 0 8px 36px rgba(0,0,0,.5); transform: translateY(-2px); }
+.btn-instagram:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+/* Wrapper: zentriert unter den Carousel-Dots */
+.ev-instagram-btn-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
 .kontakt-right { display: flex; flex-direction: column; gap: 1.4rem; }
 .info-card {
   background: var(--glass);
