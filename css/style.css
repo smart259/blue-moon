@@ -685,7 +685,7 @@ line-height: 22px;
 /* ── AKTIONEN ───────────────────────────────────────────────── */
 .aktionen {
   padding: 40px 0;
-  background: linear-gradient(180deg, #040a1d 0%, #071631 100%);
+  background: linear-gradient(1deg, #040a1d 0%, #071631 100%);
   position: relative;
   z-index: 1;
 }
