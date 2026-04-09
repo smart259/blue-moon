@@ -13,6 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet"/>
 
   <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/bento-gallery.css"/>
 </head>
 <body>
 
@@ -136,7 +137,8 @@
 <section class="about" id="about" aria-labelledby="about-title">
   <div class="container">
     <div class="about-grid">
-      <div class="about-image-wrap reveal-left">
+      <div class="about-image-wrap reveal-left border-glow">
+        <span class="edge-light" aria-hidden="true"></span>
         <img
           src="Lokal_bilder/bar_bild.png"
           alt="Blue Moon Wuppertal – Bar"
@@ -163,15 +165,18 @@
           Viel Spaß dabei wünscht euch Euer <strong>Blue Moon Team</strong>.
         </p>
         <div class="about-stats" role="list">
-          <div class="stat-card reveal-right" style="transition-delay:0s" role="listitem">
+          <div class="stat-card reveal-right border-glow" style="transition-delay:0s" role="listitem">
+            <span class="edge-light" aria-hidden="true"></span>
             <span class="stat-num">133+</span>
             <span class="stat-label">Cocktails</span>
           </div>
-          <div class="stat-card reveal-right" style="transition-delay:.25s" role="listitem">
+          <div class="stat-card reveal-right border-glow" style="transition-delay:.25s" role="listitem">
+            <span class="edge-light" aria-hidden="true"></span>
             <span class="stat-num">30+</span>
             <span class="stat-label">Jahre Erfahrung</span>
           </div>
-          <div class="stat-card reveal-right" style="transition-delay:.5s" role="listitem">
+          <div class="stat-card reveal-right border-glow" style="transition-delay:.5s" role="listitem">
+            <span class="edge-light" aria-hidden="true"></span>
             <span class="stat-num">5★</span>
             <span class="stat-label">Live Musik</span>
           </div>
@@ -191,14 +196,14 @@
       <h2 class="section-title" id="neu-title">Frisch auf <em>der Karte</em></h2>
     </div>
     <div class="neu-grid">
-      <article class="neu-card reveal-left">
-      
+      <article class="neu-card reveal-left border-glow">
+        <span class="edge-light" aria-hidden="true"></span>
         <h3 class="neu-title">Cocktails To Go</h3>
         <p class="neu-desc">Eure Lieblingscocktails zum Mitnehmen – über 133 Kreationen jetzt auch außer Haus genießen.</p>
         <span class="neu-icon" aria-hidden="true"></span>
       </article>
-      <article class="neu-card reveal-right">
-        
+      <article class="neu-card reveal-right border-glow">
+        <span class="edge-light" aria-hidden="true"></span>
         <h3 class="neu-title">Pizza</h3>
         <p class="neu-desc">Knusprige Pizzen frisch aus unserem Ofen – der perfekte Begleiter zu einem kühlen Bier oder Cocktail.</p>
         <span class="neu-icon" aria-hidden="true"></span>
@@ -628,188 +633,98 @@
   </div>
 </section>
 
-<!-- GALERIE -->
-<div class="galerie-scroll-wrapper" id="galerie">
-  <section class="galerie" aria-labelledby="galerie-title">
-    <!-- Background frame animation -->
-    <img id="galerie-animation" aria-hidden="true" alt="" />
-    <!-- Dark fade overlay -->
-    <div id="galerie-dark-overlay" aria-hidden="true"></div>
-    <!-- Vignette -->
-    <div class="galerie-vignette" aria-hidden="true"></div>
-    <!-- Content -->
-    <div class="galerie-content">
-      <div class="container">
-        <div class="galerie-header" id="galerie-header">
-          <span class="overline">Impressionen</span>
-          <h2 class="section-title" id="galerie-title">Blick ins <em>Blue Moon</em></h2>
-        </div>
+<!-- GALERIE SCROLL ANIMATION -->
+<div class="galerie-scroll-wrapper">
+<section class="galerie" id="galerie" aria-labelledby="galerie-title">
 
-        <div class="galerie-grid" role="list" aria-label="Bildergalerie">
-          <div class="galerie-item g1" role="listitem">
-            <img
-              src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_2_min (1).webp"
-              alt="Blue Moon Wuppertal – Galerie Bild 1"
-              width="400" height="300"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-            />
-          </div>
-          <div class="galerie-item g2" role="listitem">
-            <img
-              src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_5_min (1).webp"
-              alt="Blue Moon Wuppertal – Galerie Bild 2"
-              width="400" height="300"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-            />
-          </div>
-          <div class="galerie-item g3 from-right" role="listitem">
-            <img
-              src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_7_min (1).webp"
-              alt="Blue Moon Wuppertal – Galerie Bild 3"
-              width="400" height="300"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-            />
-          </div>
+  <!-- Hintergrund-Frame-Animation -->
+  <img id="galerie-animation" aria-hidden="true" alt="" />
 
-          <div class="galerie-item g4" role="listitem">
-            <img
-              src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_8_min (1).webp"
-              alt="Blue Moon – Galerie Bild 4"
-              width="800" height="350"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-          <div class="galerie-item g5 from-right" role="listitem">
-            <img
-              src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_0_min.webp"
-              alt="Blue Moon – Galerie Bild 5"
-              width="800" height="350"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
+  <!-- Dark overlay (blendet am Ende ein) -->
+  <div id="galerie-dark-overlay" aria-hidden="true"></div>
 
-          <div class="galerie-item g6" role="listitem">
-            <img
-              src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_1_min.webp"
-              alt="Blue Moon Wuppertal – Galerie Bild 6"
-              width="400" height="300"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-          <div class="galerie-item g7" role="listitem">
-            <img
-              src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_2_min.webp"
-              alt="Blue Moon Wuppertal – Galerie Bild 7"
-              width="400" height="300"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-          <div class="galerie-item g8 from-right" role="listitem">
-            <img
-              src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_3_min.webp"
-              alt="Blue Moon Wuppertal – Galerie Bild 8"
-              width="400" height="300"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
+  <!-- Cinematic Vignette -->
+  <div class="galerie-vignette" aria-hidden="true"></div>
 
-          <div class="galerie-item g9" role="listitem">
-            <img
-              src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_4_min.webp"
-              alt="Blue Moon Wuppertal – Galerie Bild 9"
-              width="400" height="300"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-          <div class="galerie-item g10" role="listitem">
-            <img
-              src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_6_min.webp"
-              alt="Blue Moon Wuppertal – Galerie Bild 10"
-              width="400" height="300"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-          <div class="galerie-item g11 from-right" role="listitem">
-            <img
-              src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_7_min.webp"
-              alt="Blue Moon Wuppertal – Galerie Bild 11"
-              width="400" height="300"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-        </div>
+  <!-- Inhalt: Header + Bildergrid -->
+  <div class="galerie-content">
 
-        <!-- Karussell (nur mobil sichtbar) -->
-        <div class="galerie-carousel" id="galerie-carousel" role="region" aria-label="Bildergalerie">
-          <div class="galerie-carousel-track" id="galerie-carousel-track">
-            <div class="galerie-carousel-slide">
-              <img src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_2_min (1).webp" alt="Blue Moon Wuppertal – Galerie Bild 1" width="400" height="300" loading="eager" fetchpriority="high" decoding="async" />
-            </div>
-            <div class="galerie-carousel-slide">
-              <img src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_5_min (1).webp" alt="Blue Moon Wuppertal – Galerie Bild 2" width="400" height="300" loading="eager" fetchpriority="high" decoding="async" />
-            </div>
-            <div class="galerie-carousel-slide">
-              <img src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_7_min (1).webp" alt="Blue Moon Wuppertal – Galerie Bild 3" width="400" height="300" loading="eager" fetchpriority="high" decoding="async" />
-            </div>
-            <div class="galerie-carousel-slide">
-              <img src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_8_min (1).webp" alt="Blue Moon – Galerie Bild 4" width="800" height="350" loading="lazy" decoding="async" />
-            </div>
-            <div class="galerie-carousel-slide">
-              <img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_0_min.webp" alt="Blue Moon – Galerie Bild 5" width="800" height="350" loading="lazy" decoding="async" />
-            </div>
-            <div class="galerie-carousel-slide">
-              <img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_1_min.webp" alt="Blue Moon Wuppertal – Galerie Bild 6" width="400" height="300" loading="lazy" decoding="async" />
-            </div>
-            <div class="galerie-carousel-slide">
-              <img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_2_min.webp" alt="Blue Moon Wuppertal – Galerie Bild 7" width="400" height="300" loading="lazy" decoding="async" />
-            </div>
-            <div class="galerie-carousel-slide">
-              <img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_3_min.webp" alt="Blue Moon Wuppertal – Galerie Bild 8" width="400" height="300" loading="lazy" decoding="async" />
-            </div>
-            <div class="galerie-carousel-slide">
-              <img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_4_min.webp" alt="Blue Moon Wuppertal – Galerie Bild 9" width="400" height="300" loading="lazy" decoding="async" />
-            </div>
-            <div class="galerie-carousel-slide">
-              <img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_6_min.webp" alt="Blue Moon Wuppertal – Galerie Bild 10" width="400" height="300" loading="lazy" decoding="async" />
-            </div>
-            <div class="galerie-carousel-slide">
-              <img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_7_min.webp" alt="Blue Moon Wuppertal – Galerie Bild 11" width="400" height="300" loading="lazy" decoding="async" />
-            </div>
-          </div>
-          <div class="galerie-carousel-dots" id="galerie-carousel-dots">
-            <button class="dot active" aria-label="Bild 1"></button>
-            <button class="dot" aria-label="Bild 2"></button>
-            <button class="dot" aria-label="Bild 3"></button>
-            <button class="dot" aria-label="Bild 4"></button>
-            <button class="dot" aria-label="Bild 5"></button>
-            <button class="dot" aria-label="Bild 6"></button>
-            <button class="dot" aria-label="Bild 7"></button>
-            <button class="dot" aria-label="Bild 8"></button>
-            <button class="dot" aria-label="Bild 9"></button>
-            <button class="dot" aria-label="Bild 10"></button>
-            <button class="dot" aria-label="Bild 11"></button>
-          </div>
-        </div>
+    <!-- Headline (fliegt mit Scale-Animation ein) -->
+    <div class="galerie-header" id="galerie-header">
+      <span class="overline">Impressionen</span>
+      <h2 class="section-title" id="galerie-title">Blick ins <em>Blue&nbsp;Moon</em></h2>
+    </div>
 
+    <!-- Desktop-Bildergrid -->
+    <div class="galerie-grid" role="list" aria-label="Bildergalerie">
+      <div class="galerie-item g1" role="listitem" tabindex="0">
+        <img src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_2_min (1).webp" alt="Atmosphäre – Gemütliche Lounges am Blue Moon" loading="eager" />
+      </div>
+      <div class="galerie-item g2" role="listitem" tabindex="0">
+        <img src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_5_min (1).webp" alt="Ambiente – Warmes Licht & stilvolles Design" loading="eager" />
+      </div>
+      <div class="galerie-item g3" role="listitem" tabindex="0">
+        <img src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_7_min (1).webp" alt="Eleganz – Moderne Bar-Ästhetik" loading="lazy" />
+      </div>
+      <div class="galerie-item g4" role="listitem" tabindex="0">
+        <img src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_8_min (1).webp" alt="Genuss – Cocktails & Getränke in Perfektion" loading="lazy" />
+      </div>
+      <div class="galerie-item g5" role="listitem" tabindex="0">
+        <img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_0_min.webp" alt="Flair – Das besondere Blue Moon Erlebnis" loading="lazy" />
+      </div>
+      <div class="galerie-item g6" role="listitem" tabindex="0">
+        <img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_1_min.webp" alt="Tanzfläche – Lebendige Musik & Bewegung" loading="lazy" />
+      </div>
+      <div class="galerie-item g7" role="listitem" tabindex="0">
+        <img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_2_min.webp" alt="Live Musik – Künstler & Künstlerinnen am Wochenende" loading="lazy" />
+      </div>
+      <div class="galerie-item g8" role="listitem" tabindex="0">
+        <img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_3_min.webp" alt="Gemeinsam – Einladende Meetingpoints" loading="lazy" />
+      </div>
+      <div class="galerie-item g9" role="listitem" tabindex="0">
+        <img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_4_min.webp" alt="Kultur – Künstlerischer Spirit seit 1995" loading="lazy" />
+      </div>
+      <div class="galerie-item g10" role="listitem" tabindex="0">
+        <img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_6_min.webp" alt="Event Space – Perfekt für private Feierlichkeiten" loading="lazy" />
+      </div>
+      <div class="galerie-item g11" role="listitem" tabindex="0">
+        <img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_7_min.webp" alt="Nachtleben – The Color of the Night seit 1995" loading="lazy" />
       </div>
     </div>
-  </section>
-</div>
 
+    <!-- Mobiles Karussell (≤500 px) -->
+    <div class="galerie-carousel" id="galerie-carousel">
+      <div class="galerie-carousel-track" id="galerie-carousel-track">
+        <div class="galerie-carousel-slide"><img src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_2_min (1).webp" alt="Atmosphäre" /></div>
+        <div class="galerie-carousel-slide"><img src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_5_min (1).webp" alt="Ambiente" /></div>
+        <div class="galerie-carousel-slide"><img src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_7_min (1).webp" alt="Eleganz" /></div>
+        <div class="galerie-carousel-slide"><img src="Lokal_bilder/galery/hf_20260325_102518_3caa1cdb-f262-436f-9fb3-99579fe13014_cell_8_min (1).webp" alt="Genuss" /></div>
+        <div class="galerie-carousel-slide"><img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_0_min.webp" alt="Flair" /></div>
+        <div class="galerie-carousel-slide"><img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_1_min.webp" alt="Tanzfläche" /></div>
+        <div class="galerie-carousel-slide"><img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_2_min.webp" alt="Live Musik" /></div>
+        <div class="galerie-carousel-slide"><img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_3_min.webp" alt="Gemeinsam" /></div>
+        <div class="galerie-carousel-slide"><img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_4_min.webp" alt="Kultur" /></div>
+        <div class="galerie-carousel-slide"><img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_6_min.webp" alt="Event Space" /></div>
+        <div class="galerie-carousel-slide"><img src="Lokal_bilder/galery/hf_20260331_151928_a557120b-be7a-474c-b6c2-a2c74da56867_cell_7_min.webp" alt="Nachtleben" /></div>
+      </div>
+      <div class="galerie-carousel-dots" id="galerie-carousel-dots">
+        <button class="dot active" aria-label="Bild 1"></button>
+        <button class="dot" aria-label="Bild 2"></button>
+        <button class="dot" aria-label="Bild 3"></button>
+        <button class="dot" aria-label="Bild 4"></button>
+        <button class="dot" aria-label="Bild 5"></button>
+        <button class="dot" aria-label="Bild 6"></button>
+        <button class="dot" aria-label="Bild 7"></button>
+        <button class="dot" aria-label="Bild 8"></button>
+        <button class="dot" aria-label="Bild 9"></button>
+        <button class="dot" aria-label="Bild 10"></button>
+        <button class="dot" aria-label="Bild 11"></button>
+      </div>
+    </div>
+
+  </div>
+</section>
+</div>
 <!-- ÖFFNUNGSZEITEN -->
 <section class="zeiten" id="zeiten" aria-labelledby="zeiten-title">
   <svg class="stars-svg" id="stars-svg-zeiten" aria-hidden="true" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"></svg>
@@ -820,7 +735,8 @@
     </div>
     <div class="zeiten-grid">
 
-      <div class="zeiten-block reveal-left reveal-delay-1">
+      <div class="zeiten-block reveal-left reveal-delay-1 border-glow">
+        <span class="edge-light" aria-hidden="true"></span>
         <h3 class="zeiten-block-title">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
@@ -848,7 +764,8 @@
         <p class="zeiten-note">* Schließzeiten können betriebsbedingt abweichen.</p>
       </div>
 
-      <div class="zeiten-block reveal-right reveal-delay-2">
+      <div class="zeiten-block reveal-right reveal-delay-2 border-glow">
+        <span class="edge-light" aria-hidden="true"></span>
         <h3 class="zeiten-block-title">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <path d="M3 2h18M3 7h18M3 12h5M16 12h5M3 17h5M16 17h5M8 7v15M16 7v15"/>
@@ -875,13 +792,15 @@
     </div>
 
     <div class="zeiten-extras reveal reveal-delay-2" role="list" aria-label="Extras und Services">
-      <div class="extra-item" role="listitem">
+      <div class="extra-item border-glow" role="listitem">
+        <span class="edge-light" aria-hidden="true"></span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/>
         </svg>
         <span>Karten&shy;zahlung möglich</span>
       </div>
-      <div class="extra-item" role="listitem">
+      <div class="extra-item border-glow" role="listitem">
+        <span class="edge-light" aria-hidden="true"></span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
           <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
@@ -890,7 +809,8 @@
         </svg>
         <span>Free WiFi</span>
       </div>
-      <div class="extra-item" role="listitem">
+      <div class="extra-item border-glow" role="listitem">
+        <span class="edge-light" aria-hidden="true"></span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
           <circle cx="9" cy="7" r="4"/>
@@ -899,7 +819,8 @@
         </svg>
         <span>Gruppen ab 5: Voranmeldung per WhatsApp</span>
       </div>
-      <div class="extra-item" role="listitem">
+      <div class="extra-item border-glow" role="listitem">
+        <span class="edge-light" aria-hidden="true"></span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
         </svg>
@@ -1059,7 +980,8 @@
       </div>
 
       <div class="kontakt-right">
-        <div class="info-card reveal reveal-delay-1">
+        <div class="info-card reveal reveal-delay-1 border-glow">
+          <span class="edge-light" aria-hidden="true"></span>
           <h3>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
@@ -1080,7 +1002,8 @@
           </span>
         </div>
 
-        <div class="info-card reveal reveal-delay-2">
+        <div class="info-card reveal reveal-delay-2 border-glow">
+          <span class="edge-light" aria-hidden="true"></span>
           <h3>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
@@ -1090,7 +1013,8 @@
           <p>Am Wochenende ist meistens Live Musik eingeplant. Aktuelle Veranstaltungen und Konzerte – einfach nachfragen!</p>
         </div>
 
-        <div class="info-card reveal reveal-delay-3">
+        <div class="info-card reveal reveal-delay-3 border-glow">
+          <span class="edge-light" aria-hidden="true"></span>
           <h3>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
@@ -1427,15 +1351,18 @@
 
   /* ── Galerie Scroll Animation ────────────────────────────────── */
   (function () {
-    const START_FRAME  = 60;
+    const START_FRAME  = 55;
     const END_FRAME    = 144;
-    const REVEAL_FRAME = 120;
+    const REVEAL_FRAME = 130;
 
     // Animation occupies first 56% of the (now 500vh) wrapper scroll,
     // matching the original 280vh animation speed.
     const ANIM_END_P   = 280 / 500;  // ≈ 0.56
     const PAN_START_P  = ANIM_END_P; // gallery pans after animation ends
     const FADE_START_P = 0.85;       // content fades to transparent at 85%
+
+    // Scroll progress at which REVEAL_FRAME is reached — overlay starts fading here
+    const REVEAL_P = ((REVEAL_FRAME - START_FRAME) / (END_FRAME - START_FRAME)) * ANIM_END_P;
 
     const imgEl       = document.getElementById('galerie-animation');
     const darkOverlay = document.getElementById('galerie-dark-overlay');
@@ -1502,7 +1429,7 @@
           gridItems.forEach(function(item, i) {
             var t = setTimeout(function() {
               item.classList.add('galerie-revealed');
-            }, i * 700);
+            }, i * 120);
             revealTimers.push(t);
           });
           if (carouselEl) { carouselEl.classList.add('galerie-revealed'); }
@@ -1528,21 +1455,22 @@
             contentEl.style.transform = '';
           }
 
-          // Fade out galerie-content at the bottom of the section
+          // Fade out background animation at the bottom (gallery content stays fully visible)
           if (p >= FADE_START_P) {
             const fadeP = Math.min(1, (p - FADE_START_P) / (1 - FADE_START_P));
-            const panP  = 1; // stay at max pan while fading
             const maxPan = Math.max(0, contentEl.offsetHeight - window.innerHeight + 80);
             contentEl.style.transform = 'translateY(-' + maxPan + 'px)';
-            contentEl.style.opacity   = 1 - fadeP;
-            
-            // Fade in dark overlay as content fades out
-            if (darkOverlay) {
-              darkOverlay.style.opacity = fadeP * 0.8;
-            }
+            contentEl.style.opacity   = '';
           } else {
             contentEl.style.opacity = '';
-            if (darkOverlay) {
+          }
+
+          // Dark overlay starts fading in with the first tile reveal, finishes at FADE_START_P
+          if (darkOverlay) {
+            if (p >= REVEAL_P) {
+              const overlayP = Math.min(1, (p - REVEAL_P) / (FADE_START_P - REVEAL_P));
+              darkOverlay.style.opacity = overlayP * 0.92;
+            } else {
               darkOverlay.style.opacity = '0';
             }
           }
@@ -2090,5 +2018,50 @@
     });
   })();
 </script>
+
+<!-- Border Glow Effect -->
+<script>
+  (function() {
+    var cards = document.querySelectorAll('.border-glow');
+    if (!cards.length) return;
+
+    function getCenter(el) {
+      var rect = el.getBoundingClientRect();
+      return [rect.width / 2, rect.height / 2];
+    }
+
+    function getEdgeProximity(el, x, y) {
+      var c = getCenter(el), cx = c[0], cy = c[1];
+      var dx = x - cx, dy = y - cy;
+      var kx = Infinity, ky = Infinity;
+      if (dx !== 0) kx = cx / Math.abs(dx);
+      if (dy !== 0) ky = cy / Math.abs(dy);
+      return Math.min(Math.max(1 / Math.min(kx, ky), 0), 1);
+    }
+
+    function getCursorAngle(el, x, y) {
+      var c = getCenter(el), dx = x - c[0], dy = y - c[1];
+      if (dx === 0 && dy === 0) return 0;
+      var deg = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
+      if (deg < 0) deg += 360;
+      return deg;
+    }
+
+    cards.forEach(function(card) {
+      card.addEventListener('pointermove', function(e) {
+        var rect = card.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        var edge = getEdgeProximity(card, x, y);
+        var angle = getCursorAngle(card, x, y);
+        card.style.setProperty('--edge-proximity', (edge * 100).toFixed(3));
+        card.style.setProperty('--cursor-angle', angle.toFixed(3) + 'deg');
+      });
+    });
+  })();
+</script>
+
+
+
 </body>
 </html>
