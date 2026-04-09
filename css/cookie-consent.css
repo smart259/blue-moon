@@ -1,0 +1,162 @@
+/* ==============================================
+   Cookie Consent Modal – Blue Moon Wuppertal
+   ============================================== */
+
+.cookie-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(2, 4, 12, 0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.cookie-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Modal Card ──────────────────────────────── */
+.cookie-modal {
+  background: #080f28;
+  border: 1px solid rgba(232, 146, 42, 0.22);
+  border-radius: 16px;
+  padding: 2.5rem 2.25rem;
+  max-width: 460px;
+  width: calc(100% - 2rem);
+  text-align: center;
+  transform: translateY(24px) scale(0.97);
+  transition: transform 0.45s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1));
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(232, 146, 42, 0.06);
+}
+
+.cookie-overlay.active .cookie-modal {
+  transform: translateY(0) scale(1);
+}
+
+/* ── Icon ────────────────────────────────────── */
+.cookie-emblem {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 1.35rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(232, 146, 42, 0.1);
+  border: 1px solid rgba(232, 146, 42, 0.22);
+}
+
+.cookie-emblem svg {
+  width: 22px;
+  height: 22px;
+  stroke: #e8922a;
+}
+
+/* ── Typography ──────────────────────────────── */
+.cookie-title {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #f3eadc;
+  margin: 0 0 1rem;
+}
+
+.cookie-text {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: rgba(243, 234, 220, 0.72);
+  margin: 0 0 1.85rem;
+}
+
+.cookie-link {
+  color: #e8922a;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+
+.cookie-link:hover {
+  color: #f5af4e;
+}
+
+/* ── Buttons ─────────────────────────────────── */
+.cookie-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cookie-btn {
+  display: block;
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  border-radius: 40px;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.67rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  min-height: 44px;
+  border: none;
+  transition:
+    transform 0.2s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)),
+    background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s;
+}
+
+.cookie-btn:hover {
+  transform: translateY(-2px);
+}
+
+.cookie-btn:active {
+  transform: translateY(0);
+}
+
+.cookie-btn:focus-visible {
+  outline: 2px solid #e8922a;
+  outline-offset: 3px;
+}
+
+.cookie-btn-primary {
+  background: #e8922a;
+  color: #02040c;
+  box-shadow: 0 4px 20px rgba(232, 146, 42, 0.28);
+}
+
+.cookie-btn-primary:hover {
+  background: #f5af4e;
+  box-shadow: 0 6px 28px rgba(232, 146, 42, 0.42);
+}
+
+.cookie-btn-secondary {
+  background: transparent;
+  color: rgba(243, 234, 220, 0.6);
+  border: 1px solid rgba(243, 234, 220, 0.18);
+}
+
+.cookie-btn-secondary:hover {
+  color: #f3eadc;
+  border-color: rgba(243, 234, 220, 0.42);
+}
+
+/* ── Mobile ──────────────────────────────────── */
+@media (max-width: 480px) {
+  .cookie-modal {
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+  }
+}
