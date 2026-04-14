@@ -2146,12 +2146,17 @@ line-height: 22px;
   z-index: 2;
   height: 100%;
 }
-/* Desktop-only layout: header, sub & lightbox positioning */
-/* Gemeinsamer Flex-Wrapper: Header + Lightbox unten bündig */
+/* Desktop-only layout: header above lightbox, stacked at bottom */
 .cocktails-cols {
   position: absolute;
   inset: 0;
   z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 2.5rem;
+  gap: 2rem;
 }
 .cocktails-header {
   display: flex;
@@ -2159,12 +2164,10 @@ line-height: 22px;
   align-items: center;
   text-align: center;
   gap: .6rem;
-  position: absolute;
-  left: 0; right: 0;
-  top: calc(var(--nav-h) + 8rem);
+  position: relative;
   opacity: 0;
   transform: scale(2.6);
-  transform-origin: center top;
+  transform-origin: center center;
   will-change: transform, opacity;
   z-index: 2;
 }
@@ -2175,18 +2178,18 @@ line-height: 22px;
 .cocktails-lightbox {
   width: 55% !important;
   max-width: 680px;
-  position: absolute !important;
-  left: 50% !important;
+  position: relative !important;
+  left: auto !important;
   right: auto !important;
   top: auto !important;
-  bottom: 2.5rem;
-  transform: translateX(-50%) translateY(calc(100% + 3rem)) !important;
+  bottom: auto !important;
+  transform: translateY(calc(100% + 3rem)) !important;
   opacity: 0 !important;
   transition: transform 0.9s var(--ease-out), opacity 0.9s var(--ease-out) !important;
   margin: 0 !important;
 }
 .cocktails-lightbox.lightbox-visible {
-  transform: translateX(-50%) translateY(0) !important;
+  transform: translateY(0) !important;
   opacity: 1 !important;
 }
 /* Compact slides inside lightbox — no scroll needed */
