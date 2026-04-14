@@ -163,7 +163,7 @@ class BentoGallery {
         if (entry.isIntersecting) {
           setTimeout(() => {
             entry.target.classList.add('revealed');
-          }, idx * 100); // Stagger by 100ms
+          }, idx * 60); // Stagger by 60ms
         }
       });
     }, observerOptions);

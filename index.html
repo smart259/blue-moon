@@ -25,6 +25,8 @@
   <!-- ── Performance: Preload kritische Schriften ─────────────── -->
   <link rel="preload" href="fonts/crimson-pro-v28-latin-regular.woff2" as="font" type="font/woff2" crossorigin/>
   <link rel="preload" href="fonts/cinzel-v26-latin-regular.woff2" as="font" type="font/woff2" crossorigin/>
+  <link rel="preload" href="fonts/cormorant-garamond-v21-latin-regular.woff2" as="font" type="font/woff2" crossorigin/>
+  <link rel="preload" href="fonts/cormorant-garamond-v21-latin-700.woff2" as="font" type="font/woff2" crossorigin/>
 
   <link rel="stylesheet" href="css/fonts.css"/>
   <link rel="stylesheet" href="css/style.css"/>
@@ -156,7 +158,7 @@
       <div class="about-image-wrap reveal-left border-glow">
         <span class="edge-light" aria-hidden="true"></span>
         <img
-          src="Lokal_bilder/bar_bild.png"
+          src="Lokal_bilder/bar_bild.jpg"
           alt="Blue Moon Wuppertal – Bar"
           width="640" height="400"
           loading="lazy"
@@ -600,7 +602,7 @@
     <div class="aktionen-grid" role="list">
 
       <article class="aktion-card reveal reveal-delay-1" role="listitem">
-        <img src="essensbilder/koefte.jpeg" alt="Köfte" class="aktion-image">
+        <img src="essensbilder/koefte.jpeg" alt="Köfte" class="aktion-image" loading="lazy">
         <span class="aktion-day">Montag</span>
         <h3 class="aktion-name">Köftetag</h3>
         <p class="aktion-sub">türkische Hackfleischspieße</p>
@@ -608,7 +610,7 @@
       </article>
 
       <article class="aktion-card reveal reveal-delay-2" role="listitem">
-        <img src="essensbilder/mantiag.jpeg" alt="Manti" class="aktion-image">
+        <img src="essensbilder/mantiag.jpeg" alt="Manti" class="aktion-image" loading="lazy">
         <span class="aktion-day">Dienstag</span>
         <h3 class="aktion-name">Mantitag</h3>
         <p class="aktion-sub">türkische Teigtaschen</p>
@@ -616,7 +618,7 @@
       </article>
 
       <article class="aktion-card reveal reveal-delay-3" role="listitem">
-        <img src="essensbilder/schnitzel.png" alt="Schnitzel" class="aktion-image">
+        <img src="essensbilder/schnitzel.png" alt="Schnitzel" class="aktion-image" loading="lazy">
         <span class="aktion-day">Mittwoch</span>
         <h3 class="aktion-name">Schnitzeltag</h3>
         <p class="aktion-sub">klassisch &amp; knusprig</p>
@@ -624,7 +626,7 @@
       </article>
 
       <article class="aktion-card reveal reveal-delay-4" role="listitem">
-        <img src="essensbilder/doener.png" alt="Döner" class="aktion-image">
+        <img src="essensbilder/doener.png" alt="Döner" class="aktion-image" loading="lazy">
         <span class="aktion-day">Donnerstag</span>
         <h3 class="aktion-name">Dönerstag</h3>
         <p class="aktion-sub">frisch vom Spieß</p>
@@ -632,7 +634,7 @@
       </article>
 
       <article class="aktion-card reveal reveal-delay-5" role="listitem">
-        <img src="essensbilder/fisch.jpeg" alt="Fisch" class="aktion-image">
+        <img src="essensbilder/fisch.jpeg" alt="Fisch" class="aktion-image" loading="lazy">
         <span class="aktion-day">Freitag</span>
         <h3 class="aktion-name">Fischtag</h3>
         <p class="aktion-sub">Dorade – frisch &amp; aromatisch</p>
@@ -1266,21 +1268,50 @@
       }
     }
 
-    /* ─ Preload — prioritise first 10 frames for fast first paint ─ */
+    /* ─ Preload — priority frames first, then batch-load the rest ─ */
     function preload() {
-      const priority = [0,1,2,3,4,5,6,7,8,9];
-      const order = priority.slice();
-      for (let i = 0; i < FRAME_COUNT; i++) {
-        if (priority.indexOf(i) === -1) order.push(i);
-      }
-      order.forEach(function(i) {
+      const priority = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 75];
+
+      // Load critical frames immediately
+      priority.forEach(function(i) {
         const img = new Image();
-        const idx = i;
-        img.onload  = function() { onFrameSettled(idx, true);  };
-        img.onerror = function() { onFrameSettled(idx, false); };
+        img.onload  = function() { onFrameSettled(i, true);  };
+        img.onerror = function() { onFrameSettled(i, false); };
         img.src = 'frames/header_animation_' + padded(i) + '.jpg';
         images[i] = img;
       });
+
+      // Build remaining list
+      const remaining = [];
+      for (let i = 0; i < FRAME_COUNT; i++) {
+        if (priority.indexOf(i) === -1) remaining.push(i);
+      }
+
+      // Batch-load remaining frames (20 per tick) to avoid flooding the network queue
+      let ri = 0;
+      function loadBatch() {
+        for (let j = 0; j < 20 && ri < remaining.length; j++, ri++) {
+          (function(i) {
+            const img = new Image();
+            img.onload  = function() { onFrameSettled(i, true);  };
+            img.onerror = function() { onFrameSettled(i, false); };
+            img.src = 'frames/header_animation_' + padded(i) + '.jpg';
+            images[i] = img;
+          })(remaining[ri]);
+        }
+        if (ri < remaining.length) {
+          if (typeof requestIdleCallback !== 'undefined') {
+            requestIdleCallback(loadBatch, { timeout: 2000 });
+          } else {
+            setTimeout(loadBatch, 50);
+          }
+        }
+      }
+      if (typeof requestIdleCallback !== 'undefined') {
+        requestIdleCallback(loadBatch, { timeout: 500 });
+      } else {
+        setTimeout(loadBatch, 0);
+      }
     }
 
     /* ─ Init ─ */
@@ -1399,13 +1430,22 @@
       });
     }
 
-    // Show first frame immediately, then respond to scroll right away
-    currentIdx = 0;
-    updateFrame(0);
+    // Only preload frames when cocktails section is approaching the viewport
     window.addEventListener('scroll', onScroll, { passive: true });
-    preload();
-    // Initialize inline styles immediately so CSS classes can't override them
-    onScroll();
+    if (wrapper) {
+      var _cktlPreloaded = false;
+      var _cktlIO = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting && !_cktlPreloaded) {
+          _cktlPreloaded = true;
+          currentIdx = 0;
+          updateFrame(0);
+          preload();
+          onScroll();
+          _cktlIO.disconnect();
+        }
+      }, { rootMargin: '100% 0px' });
+      _cktlIO.observe(wrapper);
+    }
   })();
 
   /* ── Cocktail Headline Letter Animation ──────────────────────── */
@@ -1590,10 +1630,21 @@
       }
     }
 
-    currentIdx = START_FRAME;
-    updateFrame(START_FRAME);
+    // Only preload frames when galerie section is approaching the viewport
     window.addEventListener('scroll', onScroll, { passive: true });
-    preload();
+    if (wrapper) {
+      var _galPreloaded = false;
+      var _galIO = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting && !_galPreloaded) {
+          _galPreloaded = true;
+          currentIdx = START_FRAME;
+          updateFrame(START_FRAME);
+          preload();
+          _galIO.disconnect();
+        }
+      }, { rootMargin: '150% 0px' });
+      _galIO.observe(wrapper);
+    }
   })();
 
   /* ── Galerie Animation Completion (on nav click) ────────────────────────────────── */
@@ -1705,9 +1756,9 @@
         svg.appendChild(circle);
       }
     }
-    initSVGStars('stars-svg-aktionen', 200);
-    initSVGStars('stars-svg-neu',      180);
-    initSVGStars('stars-svg-zeiten',   170);
+    initSVGStars('stars-svg-aktionen', 80);
+    initSVGStars('stars-svg-neu',      80);
+    initSVGStars('stars-svg-zeiten',   70);
   })();
 
   /* ── Scroll Reveal ──────────────────────────────────────────── */
