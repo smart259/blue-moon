@@ -851,7 +851,7 @@
 <!-- VERANSTALTUNGEN -->
 <div class="veranstaltungen-scroll-wrapper">
 <section class="veranstaltungen" id="veranstaltungen" aria-labelledby="veranstaltungen-title">
-  <video id="veranstaltungen-animation" muted autoplay loop playsinline aria-hidden="true">
+  <video id="veranstaltungen-animation" muted autoplay loop playsinline preload="auto" aria-hidden="true">
     <source src="frames_5/frames_5_3.mp4" type="video/mp4" />
   </video>
   <div class="veranstaltungen-overlay"></div>
@@ -1962,23 +1962,11 @@
     var fsImg   = document.getElementById('ev-fs-img');
     track.querySelectorAll('.ev-slide-img').forEach(function (img) {
       img.addEventListener('click', function () {
-        lbImg.src = img.src;
-        lbImg.alt = img.alt;
-        lb.classList.add('open');
-        if (lbInner) {
-          lbInner.classList.remove('lb-animate');
-          lbInner.offsetWidth; // force reflow to restart animation
-          lbInner.classList.add('lb-animate');
-        }
+        fsImg.src = img.src;
+        fsImg.alt = img.alt;
+        fsModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
       });
-    });
-    /* Lightbox-Bild-Klick → Vollbild */
-    lbImg.addEventListener('click', function (e) {
-      e.stopPropagation();
-      fsImg.src = lbImg.src;
-      fsImg.alt = lbImg.alt;
-      fsModal.classList.add('open');
-      document.body.style.overflow = 'hidden';
     });
     fsModal.addEventListener('click', function () {
       fsModal.classList.remove('open');
@@ -1999,17 +1987,29 @@
     if (!vid) return;
     vid.muted = true;
     vid.loop  = true;
+
+    var hasStarted = false;
+
+    function tryPlay() {
+      if (vid.paused) {
+        vid.play().catch(function () {});
+      }
+    }
+
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          var p = vid.play();
-          if (p !== undefined) { p.catch(function () {}); }
-        } else {
+          hasStarted = true;
+          tryPlay();
+        } else if (hasStarted) {
           vid.pause();
         }
       });
     }, { threshold: 0.1 });
     io.observe(vid);
+
+    // Fallback für Mobile: beim ersten Touch versuchen abzuspielen
+    document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
   })();
 
   /* ── Veranstaltungen Scroll Animation ─────────────────────── */
