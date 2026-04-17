@@ -1206,7 +1206,7 @@
     /* ─ Update image src ─ */
     function updateFrame(idx) {
       if (imgElement.src.indexOf('header_animation_' + padded(idx)) === -1) {
-        imgElement.src = 'frames/header_animation_' + padded(idx) + '.jpg';
+        imgElement.src = 'frames_export/frames/header_animation_' + padded(idx) + '.webp';
       }
     }
 
@@ -1277,7 +1277,7 @@
         const img = new Image();
         img.onload  = function() { onFrameSettled(i, true);  };
         img.onerror = function() { onFrameSettled(i, false); };
-        img.src = 'frames/header_animation_' + padded(i) + '.jpg';
+        img.src = 'frames_export/frames/header_animation_' + padded(i) + '.webp';
         images[i] = img;
       });
 
@@ -1295,7 +1295,7 @@
             const img = new Image();
             img.onload  = function() { onFrameSettled(i, true);  };
             img.onerror = function() { onFrameSettled(i, false); };
-            img.src = 'frames/header_animation_' + padded(i) + '.jpg';
+            img.src = 'frames_export/frames/header_animation_' + padded(i) + '.webp';
             images[i] = img;
           })(remaining[ri]);
         }
@@ -1383,7 +1383,7 @@
     function padded(n) { return String(n).padStart(3, '0'); }
 
     function updateFrame(idx) {
-      const src = 'frames_2/ani_2_' + padded(idx) + '.jpg';
+      const src = 'frames_export/Frames_2/ani_2_' + padded(idx) + '.webp';
       if (imgEl && imgEl.src.indexOf(src) === -1) imgEl.src = src;
     }
 
@@ -1425,7 +1425,7 @@
       }
       order.forEach(function (i) {
         const img = new Image();
-        img.src = 'frames_2/ani_2_' + padded(i) + '.jpg';
+        img.src = 'frames_export/Frames_2/ani_2_' + padded(i) + '.webp';
         images[i] = img;
       });
     }
@@ -1533,7 +1533,7 @@
     function padded(n) { return String(n).padStart(3, '0'); }
 
     function updateFrame(idx) {
-      const src = 'frames_3/frames_3_' + padded(idx) + '.jpg';
+      const src = 'frames_export/frames_3/frames_3_' + padded(idx) + '.webp';
       if (imgEl && imgEl.src.indexOf(src) === -1) imgEl.src = src;
     }
 
@@ -1626,7 +1626,7 @@
     function preload() {
       for (var i = START_FRAME; i <= END_FRAME; i++) {
         var img = new Image();
-        img.src = 'frames_3/frames_3_' + padded(i) + '.jpg';
+        img.src = 'frames_export/frames_3/frames_3_' + padded(i) + '.webp';
       }
     }
 
@@ -1681,7 +1681,7 @@
 
       // Set the final frame (END_FRAME = 144)
       if (imgEl) {
-        imgEl.src = 'frames_3/frames_3_144.jpg';
+        imgEl.src = 'frames_export/frames_3/frames_3_144.webp';
       }
 
       // Set content to panned position (at the end) and visible
